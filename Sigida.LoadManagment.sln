@@ -11,15 +11,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{009B76A9-47B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{5B660E74-ED6C-4D50-8EDC-61C20769CCC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sigida.LoadManagment.WebApi", "Backend\src\Sigida.LoadManagment.WebApi\Sigida.LoadManagment.WebApi.csproj", "{F5C3FEF6-3B21-4072-B8D9-9E3D890A234D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sigida.LoadManagment.WebApi", "Backend\src\Sigida.LoadManagment.WebApi\Sigida.LoadManagment.WebApi.csproj", "{F5C3FEF6-3B21-4072-B8D9-9E3D890A234D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sigida.LoadManagment.Tests", "Backend\test\Sigida.LoadManagment.Tests\Sigida.LoadManagment.Tests.csproj", "{F8F8CCD3-9EC4-4A4D-BFAB-5E7AA68A68F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sigida.LoadManagment.Domain", "Backend\src\Sigida.LoadManagment.Domain\Sigida.LoadManagment.Domain.csproj", "{83CFEE28-4533-4304-A5B1-9B6F97157521}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sigida.LoadManagment.Domain", "Backend\src\Sigida.LoadManagment.Domain\Sigida.LoadManagment.Domain.csproj", "{83CFEE28-4533-4304-A5B1-9B6F97157521}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sigida.LoadManagment.Application", "Backend\src\Sigida.LoadManagment.Application\Sigida.LoadManagment.Application.csproj", "{27A5B18F-DAD1-43C0-B72B-2742C6686171}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sigida.LoadManagment.Application", "Backend\src\Sigida.LoadManagment.Application\Sigida.LoadManagment.Application.csproj", "{27A5B18F-DAD1-43C0-B72B-2742C6686171}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sigida.LoadManagment.Infrastructure", "Backend\src\Sigida.LoadManagment.Infrastructure\Sigida.LoadManagment.Infrastructure.csproj", "{32A952D4-B010-442B-91ED-9CF4C4DD221F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sigida.LoadManagment.Infrastructure", "Backend\src\Sigida.LoadManagment.Infrastructure\Sigida.LoadManagment.Infrastructure.csproj", "{32A952D4-B010-442B-91ED-9CF4C4DD221F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sigida.LoadManagment.Unit", "Backend\test\Sigida.LoadManagment.Unit\Sigida.LoadManagment.Unit.csproj", "{D01BC588-66F8-4A08-8CFF-30B98485F6EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +31,6 @@ Global
 		{F5C3FEF6-3B21-4072-B8D9-9E3D890A234D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5C3FEF6-3B21-4072-B8D9-9E3D890A234D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5C3FEF6-3B21-4072-B8D9-9E3D890A234D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F8F8CCD3-9EC4-4A4D-BFAB-5E7AA68A68F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F8F8CCD3-9EC4-4A4D-BFAB-5E7AA68A68F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F8F8CCD3-9EC4-4A4D-BFAB-5E7AA68A68F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F8F8CCD3-9EC4-4A4D-BFAB-5E7AA68A68F9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{83CFEE28-4533-4304-A5B1-9B6F97157521}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{83CFEE28-4533-4304-A5B1-9B6F97157521}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83CFEE28-4533-4304-A5B1-9B6F97157521}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -47,6 +43,10 @@ Global
 		{32A952D4-B010-442B-91ED-9CF4C4DD221F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32A952D4-B010-442B-91ED-9CF4C4DD221F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32A952D4-B010-442B-91ED-9CF4C4DD221F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D01BC588-66F8-4A08-8CFF-30B98485F6EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D01BC588-66F8-4A08-8CFF-30B98485F6EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D01BC588-66F8-4A08-8CFF-30B98485F6EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D01BC588-66F8-4A08-8CFF-30B98485F6EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,10 +55,10 @@ Global
 		{009B76A9-47BA-4E8A-8A0F-6BEE64A7D31F} = {4562E4EA-1A68-4440-97E6-4889B18A9409}
 		{5B660E74-ED6C-4D50-8EDC-61C20769CCC6} = {4562E4EA-1A68-4440-97E6-4889B18A9409}
 		{F5C3FEF6-3B21-4072-B8D9-9E3D890A234D} = {009B76A9-47BA-4E8A-8A0F-6BEE64A7D31F}
-		{F8F8CCD3-9EC4-4A4D-BFAB-5E7AA68A68F9} = {5B660E74-ED6C-4D50-8EDC-61C20769CCC6}
 		{83CFEE28-4533-4304-A5B1-9B6F97157521} = {009B76A9-47BA-4E8A-8A0F-6BEE64A7D31F}
 		{27A5B18F-DAD1-43C0-B72B-2742C6686171} = {009B76A9-47BA-4E8A-8A0F-6BEE64A7D31F}
 		{32A952D4-B010-442B-91ED-9CF4C4DD221F} = {009B76A9-47BA-4E8A-8A0F-6BEE64A7D31F}
+		{D01BC588-66F8-4A08-8CFF-30B98485F6EB} = {5B660E74-ED6C-4D50-8EDC-61C20769CCC6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {59E511E4-28F3-4EF9-93BD-78F2BB6A2310}
