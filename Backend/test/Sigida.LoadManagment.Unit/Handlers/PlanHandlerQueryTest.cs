@@ -15,6 +15,7 @@ namespace Sigida.LoadManagment.Unit.Handlers
 {
     public class PlanHandlerQueryTest : BaseFixtureTest
     {
+        #region Get all plans test
         [Test]
         public async Task GetAllPlansQueryHandler_ShouldRerutnsResult_WithPlanDetailsDto()
         {
@@ -35,8 +36,26 @@ namespace Sigida.LoadManagment.Unit.Handlers
 
             //Assert
             result.Payload.Should().NotBeNull();
-            result.Payload.PlanDetails.Count.Should().Be(plansCount);
+            result.Payload.Count().Should().Be(plansCount);
 
         }
+
+        [Test]
+        public async Task GetAllPlansQueryHandler_ShouldRerutnsResult_WithEmptyList()
+        {
+            //Arrange
+            var plansCount = 0;
+            var handler = new GetAllPlansQueryHandler(Context, Mapper);
+
+            //Act 
+            var result = await handler.Handle(new GetAllPlansQuery(), CancellationToken.None);
+
+            //Assert
+            result.Payload.Should().NotBeNull();
+            result.Payload.Count().Should().Be(plansCount);
+        }
+        #endregion
+
+
     }
 }

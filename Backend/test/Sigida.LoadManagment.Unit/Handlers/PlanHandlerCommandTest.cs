@@ -10,7 +10,7 @@ namespace Sigida.LoadManagment.Unit.Handlers;
 
 public class PlanHandlerCommandTest : BaseFixtureTest
 {
-
+    #region Create test
     [Test]
     public async Task CreatePlanCommandHandler_ReturnsResult_WithGuid_And_CreatedNewPlanInDatabase()
     {
@@ -27,7 +27,7 @@ public class PlanHandlerCommandTest : BaseFixtureTest
         itemInDb.Should().NotBeNull();
         result.Should().NotBeNull().Should().NotBe(Guid.Empty);
     }
-
+    #endregion
 
     #region Delete tests
     [Test]
@@ -69,5 +69,6 @@ public class PlanHandlerCommandTest : BaseFixtureTest
 
 
     #endregion
+
 
 }
