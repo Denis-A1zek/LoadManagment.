@@ -44,6 +44,8 @@ public class PlanHandlerTest
         result.Should().NotBeNull().Should().NotBe(Guid.Empty);
     }
 
+
+    #region Delete tests
     [Test]
     public async Task DeletePlanCommandHandler_ReturnResult_WithNotEmptyGuid_WhenDeletedAPlanFromDb()
     {
@@ -52,7 +54,7 @@ public class PlanHandlerTest
         var plan = fixture.Build<Plan>()
             .With(p => p.Loads, new List<Load>()).Create();
         var commnd = new DeletePlanCommand(plan.Id);
-        var handler = new DeletePlanCommandHandler(_dbContext, _mapper);
+        var handler = new DeletePlanCommandHandler(_dbContext);
         
         //Act
         _dbContext.Plans.Add(plan);
@@ -64,5 +66,24 @@ public class PlanHandlerTest
         planInDb.Should().Be(null);
         result.Payload.Should().Be(plan.Id);
     }
+
+    [Test]
+    public async Task DeletePlanCommandHandler_ReturnResultFail_WithEmptyGuid()
+    {
+        var fixture = new Fixture();
+        var plan = fixture.Build<Plan>()
+            .With(p => p.Loads, new List<Load>()).Create();
+
+        var commnd = new DeletePlanCommand(plan.Id);
+        var handler = new DeletePlanCommandHandler(_dbContext);
+
+        var result = await handler.Handle(commnd, CancellationToken.None);
+
+        result.IsSuccess.Should().BeFalse();
+        result.Payload.Should().Be(Guid.Empty);
+    }
+
+
+    #endregion
 
 }
