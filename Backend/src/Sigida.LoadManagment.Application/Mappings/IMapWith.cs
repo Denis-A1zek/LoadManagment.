@@ -9,7 +9,6 @@ namespace Sigida.LoadManagment.Application.Mappings
 {
     public interface IMapWith<TSource>
     {
-        void Mapping(Profile profile)
-            => profile.CreateMap(typeof(TSource), GetType());
+        void Mapping(Profile profile);
     }
 }
