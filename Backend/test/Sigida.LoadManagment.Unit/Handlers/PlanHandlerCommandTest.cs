@@ -1,31 +1,15 @@
 ﻿using AutoFixture;
 using AutoMapper;
 using FluentAssertions;
-using Sigida.LoadManagment.Application.Features.PlanFeature.CreatePlan;
-using Sigida.LoadManagment.Application.Features.PlanFeature.DeletePlan;
+using Sigida.LoadManagment.Application.Features;
 using Sigida.LoadManagment.Application.Mappings;
 using Sigida.LoadManagment.Domain.Entities;
 using Sigida.LoadManagment.Infrastructure.Database;
 
 namespace Sigida.LoadManagment.Unit.Handlers;
 
-public class PlanHandlerCommandTest
+public class PlanHandlerCommandTest : BaseFixtureTest
 {
-    private IMapper _mapper;
-    private ApplicationDbContext _dbContext;
-
-    [SetUp]
-    public void Setup()
-    {
-        _mapper = FictitiosFactory.CreateMapper();
-        _dbContext = FictitiosFactory.CreateContext();
-    }
-
-    [TearDown]
-    public void OnTestCompleted()
-    {
-        FictitiosFactory.Dispose();
-    }
 
     [Test]
     public async Task CreatePlanCommandHandler_ReturnsResult_WithGuid_And_CreatedNewPlanInDatabase()
@@ -34,10 +18,10 @@ public class PlanHandlerCommandTest
         var command = new CreatePlanCommand("Some value");
 
         //Act
-        var handler = new CreatePlanCommandHandler(_dbContext, _mapper);
+        var handler = new CreatePlanCommandHandler(Context, Mapper);
         var result = await handler.Handle(command, CancellationToken.None);
 
-        var itemInDb = _dbContext.Plans.FirstOrDefault(p => p.Id == result.Payload);
+        var itemInDb = Context.Plans.FirstOrDefault(p => p.Id == result.Payload);
         //Assert
 
         itemInDb.Should().NotBeNull();
@@ -54,14 +38,14 @@ public class PlanHandlerCommandTest
         var plan = fixture.Build<Plan>()
             .With(p => p.Loads, new List<Load>()).Create();
         var commnd = new DeletePlanCommand(plan.Id);
-        var handler = new DeletePlanCommandHandler(_dbContext);
+        var handler = new DeletePlanCommandHandler(Context);
         
         //Act
-        _dbContext.Plans.Add(plan);
-        await _dbContext.SaveChangesAsync();
+        Context.Plans.Add(plan);
+        await Context.SaveChangesAsync();
         var result = await handler.Handle(commnd, CancellationToken.None);
 
-        var planInDb = _dbContext.Plans.FirstOrDefault(p => p.Id == p.Id);
+        var planInDb = Context.Plans.FirstOrDefault(p => p.Id == p.Id);
 
         planInDb.Should().Be(null);
         result.Payload.Should().Be(plan.Id);
@@ -75,7 +59,7 @@ public class PlanHandlerCommandTest
             .With(p => p.Loads, new List<Load>()).Create();
 
         var commnd = new DeletePlanCommand(plan.Id);
-        var handler = new DeletePlanCommandHandler(_dbContext);
+        var handler = new DeletePlanCommandHandler(Context);
 
         var result = await handler.Handle(commnd, CancellationToken.None);
 
