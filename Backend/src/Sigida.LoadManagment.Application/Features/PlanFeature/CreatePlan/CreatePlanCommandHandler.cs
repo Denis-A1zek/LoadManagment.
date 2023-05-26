@@ -23,7 +23,13 @@ public class CreatePlanCommandHandler : IRequestHandler<CreatePlanCommand, IResu
     public async Task<IResult<Guid>> Handle(CreatePlanCommand request, 
         CancellationToken cancellationToken)
     {
-        var plan = _mapper.Map<Plan>(request);
+        var plan = new Plan()
+        {
+            Description = request.Description,
+            Start = request.StartDate.Value,
+            End = request.EndDate.Value,
+            Loads = new()
+        };
 
         await _context.Plans.AddAsync(plan, cancellationToken);
         await _context.SaveChangesAsync();

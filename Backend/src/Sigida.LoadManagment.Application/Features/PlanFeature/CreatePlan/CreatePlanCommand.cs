@@ -1,5 +1,8 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using Sigida.LoadManagment.Application;
+using Sigida.LoadManagment.Application.Mappings;
+using Sigida.LoadManagment.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

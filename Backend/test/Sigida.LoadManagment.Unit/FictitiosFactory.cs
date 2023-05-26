@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Sigida.LoadManagment.Application.Mappings;
 using Sigida.LoadManagment.Infrastructure.Database;
 using System;
 using System.Collections.Generic;
@@ -23,11 +24,11 @@ public static class FictitiosFactory
         return _context;
     }
 
-    public static IMapper CreateMapper(Profile profile)
+    public static IMapper CreateMapper()
     {
         var mapperConfig = new MapperConfiguration(o =>
         {
-            o.AddProfile(profile);
+            o.AddProfile(new AssemblyMappingProfile(typeof(IMapWith<>).Assembly));
         });
 
         return new Mapper(mapperConfig);

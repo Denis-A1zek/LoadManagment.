@@ -21,7 +21,7 @@ namespace Sigida.LoadManagment.Unit.Handlers
         [SetUp]
         public void Setup()
         {
-            _mapper = FictitiosFactory.CreateMapper(new PlanMapperConfiguration());
+            _mapper = FictitiosFactory.CreateMapper();
             _dbContext = FictitiosFactory.CreateContext();
         }
 
