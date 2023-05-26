@@ -1,11 +1,4 @@
-﻿using Sigida.LoadManagment.Application;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Sigida.LoadManagment.Application.Common.Models;
+﻿namespace Sigida.LoadManagment.Application.Common.Models;
 
 internal readonly record struct Result<T>(T Payload, string Reason) : IResult<T>
 {
