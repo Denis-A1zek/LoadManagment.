@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sigida.LoadManagment.Application.Features.PlanFeature.GetAllPlans;
+namespace Sigida.LoadManagment.Application.Features;
 
 public sealed class GetAllPlansQueryHandler : IRequestHandler<GetAllPlansQuery, IResult<PlansResponse>>
 {
@@ -26,11 +26,11 @@ public sealed class GetAllPlansQueryHandler : IRequestHandler<GetAllPlansQuery, 
             .Select(x => x)
             .Include(x => x.Loads);
 
-        PlansResponse response = new(new List<PlanDetailsDto>());
+        PlansResponse response = new(new List<PlanDetails>());
 
         await source.ForEachAsync(s =>
         {
-            var planDetails = _mapper.Map<Plan, PlanDetailsDto>(s);
+            var planDetails = _mapper.Map<Plan, PlanDetails>(s);
 
             response.PlanDetails.Add(planDetails);
         });

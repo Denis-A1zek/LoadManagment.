@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Sigida.LoadManagment.Application.Common.Models;
 using Sigida.LoadManagment.Infrastructure.Database;
 
-namespace Sigida.LoadManagment.Application.Features.PlanFeature.DeletePlan;
+namespace Sigida.LoadManagment.Application.Features;
 
 public sealed class DeletePlanCommandHandler : IRequestHandler<DeletePlanCommand, IResult<Guid>>
 {

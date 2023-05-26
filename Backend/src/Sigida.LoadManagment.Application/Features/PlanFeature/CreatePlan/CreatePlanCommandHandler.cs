@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sigida.LoadManagment.Application.Features.PlanFeature.CreatePlan;
+namespace Sigida.LoadManagment.Application.Features;
 
 public class CreatePlanCommandHandler : IRequestHandler<CreatePlanCommand, IResult<Guid>>
 {

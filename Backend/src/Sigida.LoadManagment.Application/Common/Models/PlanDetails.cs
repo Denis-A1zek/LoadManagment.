@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Sigida.LoadManagment.Application.Common.Models;
 
-public sealed record PlanDetailsDto : IMapWith<Plan>
+public sealed record PlanDetails : IMapWith<Plan>
 {
     public Guid Id { get; init; }
     public string Description { get; init; }
@@ -18,7 +18,7 @@ public sealed record PlanDetailsDto : IMapWith<Plan>
     
     public void Mapping(Profile profile)
     {
-        profile.CreateMap<Plan, PlanDetailsDto>()
+        profile.CreateMap<Plan, PlanDetails>()
             .ForMember(m => m.Id,
                 o => o.MapFrom(s => s.Id))
             .ForMember(m => m.LoadCount,
