@@ -16,4 +16,8 @@
     <ProjectReference Include="..\Sigida.LoadManagment.Infrastructure\Sigida.LoadManagment.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Common\Exceptions\" />
+  </ItemGroup>
+
 </Project>

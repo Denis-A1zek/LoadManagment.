@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Sigida.LoadManagment.Application.Common.Exceptions;
 using Sigida.LoadManagment.Application.Common.Models;
 using Sigida.LoadManagment.Infrastructure.Database;
 
@@ -10,11 +9,9 @@ namespace Sigida.LoadManagment.Application.Features.PlanFeature.DeletePlan;
 public sealed class DeletePlanCommandHandler : IRequestHandler<DeletePlanCommand, IResult<Guid>>
 {
     private readonly ApplicationDbContext _context;
-    private readonly IMapper _mapper;
 
-    public DeletePlanCommandHandler
-        (ApplicationDbContext context, IMapper mapper)
-        => (_context, _mapper) = (context, mapper);
+    public DeletePlanCommandHandler (ApplicationDbContext context)
+        => (_context) = (context);
 
     public async Task<IResult<Guid>> Handle(DeletePlanCommand request, CancellationToken cancellationToken)
     {
