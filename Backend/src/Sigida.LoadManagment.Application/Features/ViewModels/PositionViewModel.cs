@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sigida.LoadManagment.Application.Common.Models;
+namespace Sigida.LoadManagment.Application.Features.ViewModels;
 
-public sealed record PositionDetails : IMapWith<Position>
+public sealed record PositionViewModel : IMapWith<Position>
 {
     public int Id { get; init; }
     public string Title { get; init; } = null!;
@@ -17,7 +17,7 @@ public sealed record PositionDetails : IMapWith<Position>
 
     public void Mapping(Profile profile)
     {
-        profile.CreateMap<Position, PositionDetails>()
+        profile.CreateMap<Position, PositionViewModel>()
             .ForMember(m => m.LoadRange, o => o.MapFrom(s => $"{s.MinLoad} - {s.MaxLoad}"));
     }
 }
