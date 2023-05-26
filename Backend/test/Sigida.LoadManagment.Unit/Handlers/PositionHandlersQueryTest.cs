@@ -9,7 +9,7 @@ namespace Sigida.LoadManagment.Unit.Handlers
     public class PositionHandlersQueryTest : BaseFixtureTest
     {
         [Test]
-        public async Task GetPositionsQueryHandler_ShouldRerutnsResult_WithPlanDetailsDto()
+        public async Task GetPositionsQueryHandler_ShouldRerutnsResult_WithPostionViewModels()
         {
             //Arrange
             var fixture = new Fixture();
