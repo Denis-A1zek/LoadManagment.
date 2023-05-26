@@ -8,7 +8,7 @@ internal readonly record struct Result<T>(T Payload, string Reason) : IResult<T>
     private Result(T payload) : this(payload, default) 
         => Payload = payload;
 
-    public bool IsSuccess => Reason is not null;
+    public bool IsSuccess => Reason is null;
 
     internal static Result<T> Fail(string reason)
         => new Result<T>(reason);
