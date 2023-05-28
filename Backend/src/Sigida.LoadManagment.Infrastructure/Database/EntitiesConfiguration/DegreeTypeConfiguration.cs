@@ -14,7 +14,9 @@ namespace Sigida.LoadManagment.Infrastructure.Database.EntitiesConfiguration
 
         protected override void AddConfigure(EntityTypeBuilder<Degree> builder)
         {
-            
+            builder.HasData(
+                new Degree() { Id = Guid.NewGuid(), Title = "Ст. преподаватель"},
+                new Degree() { Id = Guid.NewGuid(), Title = "Доцент" });
         }
     }
 }

@@ -9,13 +9,12 @@ using System.Threading.Tasks;
 
 namespace Sigida.LoadManagment.Infrastructure.Database.EntitiesConfiguration;
 
-internal sealed class PositionTypeConfiguration : IEntityTypeConfiguration<Position>
+internal sealed class PositionTypeConfiguration : IdentityTypeConfiguration<Position>
 {
-    public void Configure(EntityTypeBuilder<Position> builder)
-    {
-        builder.ToTable("Positions");
+    protected override string TableName => "Positions";
 
-        builder.HasKey(x => x.Id);
-        builder.Property(x => x.Id);
+    protected override void AddConfigure(EntityTypeBuilder<Position> builder)
+    {
+        
     }
 }
