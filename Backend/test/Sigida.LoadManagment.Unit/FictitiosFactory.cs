@@ -21,6 +21,7 @@ public static class FictitiosFactory
         .Options;
 
         _context = new ApplicationDbContext(options);
+
         return _context;
     }
 
