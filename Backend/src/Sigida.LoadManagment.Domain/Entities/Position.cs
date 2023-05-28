@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Sigida.LoadManagment.Domain.Entities;
 
-public class Position 
+public class Position : Identity
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     public string Title { get; set; } = null!;
     public double MinLoad { get; set; }
     public double MaxLoad { get; set; }
