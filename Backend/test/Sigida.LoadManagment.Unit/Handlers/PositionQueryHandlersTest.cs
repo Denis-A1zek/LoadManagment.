@@ -6,7 +6,7 @@ using Sigida.LoadManagment.Domain.Entities;
 
 namespace Sigida.LoadManagment.Unit.Handlers
 {
-    public class PositionHandlersQueryTest : BaseFixtureTest
+    public class PositionQueryHandlersTest : BaseFixtureTest
     {
         [Test]
         public async Task GetPositionsQueryHandler_ShouldRerutnsResult_WithPostionViewModels()

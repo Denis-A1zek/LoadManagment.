@@ -11,7 +11,8 @@ using System.Threading.Tasks;
 
 namespace Sigida.LoadManagment.Application.Features;
 
-public class CreatePlanCommandHandler : IRequestHandler<CreatePlanCommand, IResult<Guid>>
+public sealed class CreatePlanCommandHandler 
+    : IRequestHandler<CreatePlanCommand, IResult<Guid>>
 {
     private readonly ApplicationDbContext _context;
     private readonly IMapper _mapper;

@@ -8,7 +8,8 @@ using Sigida.LoadManagment.Infrastructure.Database;
 
 namespace Sigida.LoadManagment.Application.Features;
 
-public sealed class GetPositionsQueryHandler : IRequestHandler<GetPositionsQuery, IResult<IEnumerable<PositionViewModel>>>
+public sealed class GetPositionsQueryHandler 
+    : IRequestHandler<GetPositionsQuery, IResult<IEnumerable<PositionViewModel>>>
 {
     private readonly ApplicationDbContext _context;
     private readonly IMapper _mapper;

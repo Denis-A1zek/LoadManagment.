@@ -6,7 +6,8 @@ using Sigida.LoadManagment.Infrastructure.Database;
 
 namespace Sigida.LoadManagment.Application.Features;
 
-public sealed class DeletePlanCommandHandler : IRequestHandler<DeletePlanCommand, IResult<Guid>>
+public sealed class DeletePlanCommandHandler 
+    : IRequestHandler<DeletePlanCommand, IResult<Guid>>
 {
     private readonly ApplicationDbContext _context;
 

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Sigida.LoadManagment.Unit.Handlers;
 
-public class DegreeHandlersQueryTest : BaseFixtureTest
+public class DegreeQueryHandlersTest : BaseFixtureTest
 {
     [Test]
     public async Task GetDegreesQueryHandler_ShouldRerutnsResult_WithDegreeViewModels()

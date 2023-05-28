@@ -8,7 +8,7 @@ using Sigida.LoadManagment.Infrastructure.Database;
 
 namespace Sigida.LoadManagment.Unit.Handlers;
 
-public class PlanHandlerCommandTest : BaseFixtureTest
+public class PlanCommandHandlersTest : BaseFixtureTest
 {
     #region Create test
     [Test]

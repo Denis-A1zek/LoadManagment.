@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Sigida.LoadManagment.Unit.Handlers
 {
-    public class PlanHandlerQueryTest : BaseFixtureTest
+    public class PlanQueryHandlersTest : BaseFixtureTest
     {
         #region Get all plans test
         [Test]

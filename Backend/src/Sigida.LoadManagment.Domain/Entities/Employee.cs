@@ -11,6 +11,8 @@ public class Employee : Identity
     public string Name { get; set; } = null!;
     public string Surname { get; set; } = null!;
     public string Lastname { get; set; } = null!;
-    public int PositionId { get; set; }
-    public Position Position { get; set; } = null!;
+    public Guid PositionId { get; set; }
+    public Position? Position { get; set; }
+    public Guid DegreeId { get; set; }
+    public Degree? Degree { get; set; }
 }

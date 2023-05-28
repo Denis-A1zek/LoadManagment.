@@ -14,7 +14,8 @@ using System.Threading.Tasks;
 
 namespace Sigida.LoadManagment.Application.Features;
 
-public sealed class GetAllPlansQueryHandler : IRequestHandler<GetAllPlansQuery, IResult<IEnumerable<PlanViewModel>>>
+public sealed class GetAllPlansQueryHandler 
+    : IRequestHandler<GetAllPlansQuery, IResult<IEnumerable<PlanViewModel>>>
 {
     private readonly ApplicationDbContext _context;
     private readonly IMapper _mapper;
