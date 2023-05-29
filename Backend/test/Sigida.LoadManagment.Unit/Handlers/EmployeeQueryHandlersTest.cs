@@ -56,9 +56,9 @@ public class EmployeeQueryHandlersTest : BaseFixtureTest
         var result = await handler.Handle(query, CancellationToken.None);
 
         //Assert
-        result.Payload.Should().BeOfType<List<EmployeeViewModel>>()
+        result.Payload.Should().BeOfType<PageViewModel<EmployeeViewModel>>()
             .Should().NotBeNull();
 
-        result.Payload.ElementAt(0).Id.Should().Be(employeeList[0].Id);
+        result.Payload.Values.ElementAt(0).Id.Should().Be(employeeList[0].Id);
     }
 }
