@@ -28,7 +28,6 @@ public sealed class CreateEmployeeCommandHandler
             Name = request.Name,
             Lastname = request.Lastname,
             Surname = request.Surname,
-            DegreeId = request.DegreeId,
             PositionId = request.PositionId
         };
 

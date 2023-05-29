@@ -8,5 +8,5 @@ using System.Threading.Tasks;
 namespace Sigida.LoadManagment.Application.Features;
 
 public sealed record CreateEmployeeCommand
-    (string Name, string Surname, string Lastname, Guid PositionId, Guid DegreeId)
+    (string Name, string Surname, string Lastname, Guid PositionId)
     : IRequest<IResult<Guid>>;

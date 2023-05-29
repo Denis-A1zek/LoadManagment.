@@ -8,5 +8,5 @@ using System.Threading.Tasks;
 
 namespace Sigida.LoadManagment.Application.Features;
 
-public sealed record GetEmployeeByIdQuery(Guid Id) 
-    : IRequest<IResult<EmployeeEditViewModel>>;
+public sealed record GetEmployeesPaginationQuery(int Page, int PageSize) 
+    : IRequest<IResult<IEnumerable<EmployeeViewModel>>>;

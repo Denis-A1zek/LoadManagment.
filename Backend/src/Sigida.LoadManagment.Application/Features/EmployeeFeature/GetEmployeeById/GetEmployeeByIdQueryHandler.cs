@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace Sigida.LoadManagment.Application.Features;
 
 public sealed class GetEmployeeByIdQueryHandler
-    : IRequestHandler<GetEmployeeByIdQuery, IResult<EmployeeViewModel>>
+    : IRequestHandler<GetEmployeeByIdQuery, IResult<EmployeeEditViewModel>>
 {
 
     private readonly ApplicationDbContext _context;
@@ -23,20 +23,19 @@ public sealed class GetEmployeeByIdQueryHandler
     public GetEmployeeByIdQueryHandler(ApplicationDbContext context, IMapper mapper)
         => (_context, _mapper) = (context, mapper);
 
-    public async Task<IResult<EmployeeViewModel>> Handle(GetEmployeeByIdQuery request, 
+    public async Task<IResult<EmployeeEditViewModel>> Handle(GetEmployeeByIdQuery request, 
         CancellationToken cancellationToken)
     {
         var employee = await _context.Set<Employee>()
             .Where(x => x.Id == request.Id)
             .Include(x => x.Position)
-            .Include(x => x.Degree)
             .AsNoTracking().FirstOrDefaultAsync();
 
         if (employee is null)
-            return Result<EmployeeViewModel>.Fail($"{request.Id} not found");
+            return Result<EmployeeEditViewModel>.Fail($"{request.Id} not found");
 
-        var employeeView = _mapper.Map<Employee,EmployeeViewModel>(employee);
+        var employeeView = _mapper.Map<Employee,EmployeeEditViewModel>(employee);
 
-        return Result<EmployeeViewModel>.Success(employeeView);
+        return Result<EmployeeEditViewModel>.Success(employeeView);
     }
 }

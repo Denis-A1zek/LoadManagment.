@@ -35,7 +35,6 @@ public sealed class UpdateEmployeeCommandHandler
         employee.Surname = request.Surname;
         employee.Lastname = request.Lastname;
         employee.PositionId = request.PositionId;
-        employee.DegreeId = request.DegreeId;
         var newEmployee = _context.Set<Employee>().Update(employee);
             
 
