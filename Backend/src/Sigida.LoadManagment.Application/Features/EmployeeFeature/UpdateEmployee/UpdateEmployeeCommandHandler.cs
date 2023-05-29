@@ -36,7 +36,7 @@ public sealed class UpdateEmployeeCommandHandler
         employee.Lastname = request.Lastname;
         employee.PositionId = request.PositionId;
         var newEmployee = _context.Set<Employee>().Update(employee);
-            
+        await _context.SaveChangesAsync();    
 
         if (newEmployee is null)
             return Result<Guid>.Fail($"Не удалось обновить {request.Id}");

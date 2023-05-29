@@ -13,6 +13,5 @@ public sealed record  UpdateEmployeeCommand(
     string Name,
     string Surname,
     string Lastname,
-    Guid PositionId,
-    Guid DegreeId) : IRequest<IResult<Guid>>;
+    Guid PositionId) : IRequest<IResult<Guid>>;
 

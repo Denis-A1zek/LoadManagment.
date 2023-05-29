@@ -20,4 +20,9 @@
     <ProjectReference Include="..\Sigida.LoadManagment.Infrastructure\Sigida.LoadManagment.Infrastructure.csproj" />
   </ItemGroup>
 
+	<PropertyGroup>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<NoWarn>$(NoWarn);1591</NoWarn>
+	</PropertyGroup>
+
 </Project>
