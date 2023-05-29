@@ -8,7 +8,8 @@ namespace Sigida.LoadManagment.Web.Controllers;
 [Route("api/")]
 public class PositionController : BaseController
 {
-    [HttpGet]
+    [HttpGet("positions")]
+    [ProducesResponseType(200)]
     public async Task<ActionResult> GetAll()
         => Ok(await Mediator.Send(new GetPositionsQuery()));
 }
