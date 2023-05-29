@@ -11,7 +11,7 @@ namespace Sigida.LoadManagment.Application.Features.ViewModels;
 
 public sealed record PositionViewModel : IMapWith<Position>
 {
-    public int Id { get; init; }
+    public Guid Id { get; init; }
     public string Title { get; init; } = null!;
     public string? LoadRange { get; init; }
 

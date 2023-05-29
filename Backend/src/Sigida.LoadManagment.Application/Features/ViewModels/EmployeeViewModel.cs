@@ -9,21 +9,21 @@ using System.Threading.Tasks;
 
 namespace Sigida.LoadManagment.Application.Features.ViewModels;
 
-public sealed record EmployeeViewModel : IMapWith<Employee>
+public record EmployeeViewModel : IMapWith<Employee>
 {
     public Guid Id { get; set; }
-    public string Name { get; set; }
-    public string Surname { get; set; }
-    public string Lastname { get; set; }
-    public Guid PositionId { get; set; }
+    public string FullName { get; set; }
     public string PositionName { get; set; }
-    public Guid DegreeId { get; set; }
-    public string DegreeName { get; set; }  
+    public string Load { get; set; }
 
     public void Mapping(Profile profile)
     {
         profile.CreateMap<Employee, EmployeeViewModel>()
-            .ForMember(m => m.PositionName, o=> o.MapFrom(s => s.Position.Title))
-            .ForMember(m => m.DegreeName, o => o.MapFrom(s => s.Degree.Title));
+            .ForMember(m => m.FullName, 
+                o => o.MapFrom(src => $"{src.Surname} {src.Name} {src.Lastname}"))
+            .ForMember(m => m.PositionName,
+                o => o.MapFrom(src => $"{src.Position.Title}"))
+            .ForMember(m => m.Load,
+                o => o.MapFrom(src => $"{src.Position.MinLoad} - {src.Position.MaxLoad}"));
     }
 }
