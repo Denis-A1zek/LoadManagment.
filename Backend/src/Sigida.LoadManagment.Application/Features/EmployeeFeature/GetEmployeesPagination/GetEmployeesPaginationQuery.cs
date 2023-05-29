@@ -9,4 +9,4 @@ using System.Threading.Tasks;
 namespace Sigida.LoadManagment.Application.Features;
 
 public sealed record GetEmployeesPaginationQuery(int Page, int PageSize) 
-    : IRequest<IResult<IEnumerable<EmployeeViewModel>>>;
+    : IRequest<IResult<PageViewModel<EmployeeViewModel>>>;

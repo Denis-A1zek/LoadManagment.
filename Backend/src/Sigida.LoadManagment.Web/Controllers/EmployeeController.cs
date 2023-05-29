@@ -24,7 +24,7 @@ namespace Sigida.LoadManagment.Web.Controllers
         [HttpGet]
         [Route("{page}/{pageSize}")]
         public async Task<IActionResult> GetPaged(int page, int pageSize)
-            => Ok(await Mediator.Send(new GetAllEmployeeQuery()));
+            => Ok(await Mediator.Send(new GetEmployeesPaginationQuery(page, pageSize)));
 
         [HttpGet]
         [Route("{id}")]

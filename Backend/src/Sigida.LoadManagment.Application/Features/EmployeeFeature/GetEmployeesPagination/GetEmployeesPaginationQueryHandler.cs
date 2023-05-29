@@ -16,7 +16,7 @@ namespace Sigida.LoadManagment.Application.Features;
 
 public sealed class GetEmployeesPaginationQueryHandler
     : IRequestHandler<GetEmployeesPaginationQuery, 
-        IResult<IEnumerable<EmployeeViewModel>>>
+        IResult<PageViewModel<EmployeeViewModel>>>
 {
 
     private readonly ApplicationDbContext _context;
@@ -26,7 +26,7 @@ public sealed class GetEmployeesPaginationQueryHandler
         (ApplicationDbContext context, IMapper mapper)
         => (_context, _mapper) = (context, mapper);
 
-    public async Task<IResult<IEnumerable<EmployeeViewModel>>> Handle
+    public async Task<IResult<PageViewModel<EmployeeViewModel>>> Handle
         (GetEmployeesPaginationQuery request, CancellationToken cancellationToken)
     {
         var employeeCount = await _context.Set<Employee>().CountAsync();
@@ -39,6 +39,8 @@ public sealed class GetEmployeesPaginationQueryHandler
             .Select(e => _mapper.Map<Employee, EmployeeViewModel>(e))
             .ToListAsync();
 
-        return Result<IEnumerable<EmployeeViewModel>>.Success(employee);
+        var employeePage = new PageViewModel<EmployeeViewModel>(employee, employeeCount,totalPages);
+
+        return Result<PageViewModel<EmployeeViewModel>>.Success(employeePage);
     }
 }
