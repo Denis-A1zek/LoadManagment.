@@ -15,6 +15,9 @@ internal sealed class PositionTypeConfiguration : IdentityTypeConfiguration<Posi
 
     protected override void AddConfigure(EntityTypeBuilder<Position> builder)
     {
-        
+        builder.HasData(
+            new Position() { Id = Guid.NewGuid(), Title = "Доцент", MinLoad = 0, MaxLoad = 600, },
+            new Position() { Id = Guid.NewGuid(), Title = "Ст. преподаватель", MinLoad = 0, MaxLoad = 900, },
+            new Position() { Id = Guid.NewGuid(), Title = "Ассистент", MinLoad = 0, MaxLoad = 1200, });
     }
 }

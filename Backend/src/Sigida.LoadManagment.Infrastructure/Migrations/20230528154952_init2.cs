@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Sigida.LoadManagment.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class init2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -43,8 +43,7 @@ namespace Sigida.LoadManagment.Infrastructure.Migrations
                 name: "Positions",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MinLoad = table.Column<double>(type: "float", nullable: false),
                     MaxLoad = table.Column<double>(type: "float", nullable: false)
@@ -71,7 +70,9 @@ namespace Sigida.LoadManagment.Infrastructure.Migrations
                 name: "Subjects",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -86,22 +87,14 @@ namespace Sigida.LoadManagment.Infrastructure.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Lastname = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PositionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    PositionId1 = table.Column<int>(type: "int", nullable: true),
-                    DegreeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    PositionId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Employees", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Employees_Degrees_DegreeId",
-                        column: x => x.DegreeId,
-                        principalTable: "Degrees",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Employees_Positions_PositionId1",
-                        column: x => x.PositionId1,
+                        name: "FK_Employees_Positions_PositionId",
+                        column: x => x.PositionId,
                         principalTable: "Positions",
                         principalColumn: "Id");
                 });
@@ -144,19 +137,14 @@ namespace Sigida.LoadManagment.Infrastructure.Migrations
                 columns: new[] { "Id", "Title" },
                 values: new object[,]
                 {
-                    { new Guid("b25af79b-fb59-4f79-9951-3c7d295622a8"), "Доцент" },
-                    { new Guid("c8c98d11-33b7-47c9-9a34-f41c830ea5ae"), "Ст. преподаватель" }
+                    { new Guid("6b4730da-df42-4c30-9528-3b8ae056e7f8"), "Ст. преподаватель" },
+                    { new Guid("fef245f6-ac00-4c95-9290-5d9fddb1cc1a"), "Доцент" }
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Employees_DegreeId",
+                name: "IX_Employees_PositionId",
                 table: "Employees",
-                column: "DegreeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Employees_PositionId1",
-                table: "Employees",
-                column: "PositionId1");
+                column: "PositionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Loads_PlanId",
@@ -178,13 +166,13 @@ namespace Sigida.LoadManagment.Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Degrees");
+
+            migrationBuilder.DropTable(
                 name: "Employees");
 
             migrationBuilder.DropTable(
                 name: "Loads");
-
-            migrationBuilder.DropTable(
-                name: "Degrees");
 
             migrationBuilder.DropTable(
                 name: "Positions");

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sigida.LoadManagment.Infrastructure.Database;
 
@@ -11,9 +12,11 @@ using Sigida.LoadManagment.Infrastructure.Database;
 namespace Sigida.LoadManagment.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230528155110_init3")]
+    partial class init3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -120,29 +123,6 @@ namespace Sigida.LoadManagment.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Positions", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("36213718-7762-4c67-9674-9d93544a5ae6"),
-                            MaxLoad = 600.0,
-                            MinLoad = 0.0,
-                            Title = "Доцент"
-                        },
-                        new
-                        {
-                            Id = new Guid("371ae21a-9cda-4a07-964e-9a5f27d67fa5"),
-                            MaxLoad = 900.0,
-                            MinLoad = 0.0,
-                            Title = "Ст. преподаватель"
-                        },
-                        new
-                        {
-                            Id = new Guid("0e7bf3ac-09fe-466e-8aef-521659c48893"),
-                            MaxLoad = 1200.0,
-                            MinLoad = 0.0,
-                            Title = "Ассистент"
-                        });
                 });
 
             modelBuilder.Entity("Sigida.LoadManagment.Domain.Entities.Specialty", b =>

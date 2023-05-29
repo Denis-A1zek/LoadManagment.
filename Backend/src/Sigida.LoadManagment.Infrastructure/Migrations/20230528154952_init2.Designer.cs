@@ -12,8 +12,8 @@ using Sigida.LoadManagment.Infrastructure.Database;
 namespace Sigida.LoadManagment.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230528131456_init")]
-    partial class init
+    [Migration("20230528154952_init2")]
+    partial class init2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,12 +42,12 @@ namespace Sigida.LoadManagment.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("c8c98d11-33b7-47c9-9a34-f41c830ea5ae"),
+                            Id = new Guid("6b4730da-df42-4c30-9528-3b8ae056e7f8"),
                             Title = "Ст. преподаватель"
                         },
                         new
                         {
-                            Id = new Guid("b25af79b-fb59-4f79-9951-3c7d295622a8"),
+                            Id = new Guid("fef245f6-ac00-4c95-9290-5d9fddb1cc1a"),
                             Title = "Доцент"
                         });
                 });
@@ -58,9 +58,6 @@ namespace Sigida.LoadManagment.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("DegreeId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Lastname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -69,11 +66,8 @@ namespace Sigida.LoadManagment.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("PositionId")
+                    b.Property<Guid?>("PositionId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<int?>("PositionId1")
-                        .HasColumnType("int");
 
                     b.Property<string>("Surname")
                         .IsRequired()
@@ -81,9 +75,7 @@ namespace Sigida.LoadManagment.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DegreeId");
-
-                    b.HasIndex("PositionId1");
+                    b.HasIndex("PositionId");
 
                     b.ToTable("Employees", (string)null);
                 });
@@ -141,11 +133,9 @@ namespace Sigida.LoadManagment.Infrastructure.Migrations
 
             modelBuilder.Entity("Sigida.LoadManagment.Domain.Entities.Position", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<double>("MaxLoad")
                         .HasColumnType("float");
@@ -188,6 +178,14 @@ namespace Sigida.LoadManagment.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Subjects", (string)null);
@@ -195,17 +193,9 @@ namespace Sigida.LoadManagment.Infrastructure.Migrations
 
             modelBuilder.Entity("Sigida.LoadManagment.Domain.Entities.Employee", b =>
                 {
-                    b.HasOne("Sigida.LoadManagment.Domain.Entities.Degree", "Degree")
-                        .WithMany()
-                        .HasForeignKey("DegreeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Sigida.LoadManagment.Domain.Entities.Position", "Position")
                         .WithMany()
-                        .HasForeignKey("PositionId1");
-
-                    b.Navigation("Degree");
+                        .HasForeignKey("PositionId");
 
                     b.Navigation("Position");
                 });
