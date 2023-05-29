@@ -1,0 +1,30 @@
+﻿@using System.ComponentModel.DataAnnotations;
+
+@typeparam T
+    
+<table>
+    <thead>
+        <tr>
+            @foreach (var property in typeof(T).GetProperties())
+            {
+                <th>@property.CustomAttributes.First().NamedArguments.First().TypedValue.Value</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Value)
+        {
+            <tr>
+                @foreach (var property in typeof(T).GetProperties())
+                {
+                    <td>@property.GetValue(item)</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    [Parameter]
+    public IEnumerable<T> Value { get; set; } = null!;
+}
