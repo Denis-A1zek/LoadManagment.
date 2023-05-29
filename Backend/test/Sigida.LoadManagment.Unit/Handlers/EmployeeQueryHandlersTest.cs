@@ -27,9 +27,38 @@ public class EmployeeQueryHandlersTest : BaseFixtureTest
         var result = await handler.Handle(query, CancellationToken.None);
 
         //Assert
-        result.Payload.Should().BeOfType<EmployeeViewModel>()
+        result.Payload.Should().BeOfType<EmployeeEditViewModel>()
             .Should().NotBeNull();
 
         result.Payload.Id.Should().Be(employee.Id);
+    }
+
+    [Test]
+    public async Task GetEmployeesPagination_ReturnResult_With_NotEmptyEmployeeViewModel()
+    {
+        //Arrange
+
+        var fixture = new Fixture();
+        var employeeList = new List<Employee>();
+
+        for (int i = 0; i < 100; i++)
+        {
+            employeeList.Add(fixture.Create<Employee>());
+        }
+
+        var query = new GetEmployeesPaginationQuery(1, 10);
+        var handler = new GetEmployeesPaginationQueryHandler(Context, Mapper);
+
+        //Act
+        await Context.Set<Employee>().AddRangeAsync(employeeList);
+        await Context.SaveChangesAsync();
+
+        var result = await handler.Handle(query, CancellationToken.None);
+
+        //Assert
+        result.Payload.Should().BeOfType<List<EmployeeViewModel>>()
+            .Should().NotBeNull();
+
+        result.Payload.ElementAt(0).Id.Should().Be(employeeList[0].Id);
     }
 }
