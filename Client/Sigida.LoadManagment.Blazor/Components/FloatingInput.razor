@@ -1,0 +1,41 @@
+﻿@typeparam TType
+
+<div class="form-floating">
+    <input type="@Type" 
+        class="form-control" 
+        id="@_idName" 
+        placeholder="Имя сотрудника" 
+        value="@_value"
+        @onchange="ChangeValue">
+    
+        <label for="@_idName">@Label</label>
+    <ValidationMessage For="@(() => Value)" />
+</div>
+
+@code {
+    [Parameter]
+    public string Label { get; set; } = "Label";
+    [Parameter]
+    public string Type { get; set; } = "text";
+
+    [Parameter]
+    public TType Value
+    {
+        get{ return _value;  }
+        set{ _value = value; }
+    }
+
+    [Parameter]
+    public EventCallback<TType> ValueChanged { get; set; }
+
+    private TType _value = default(TType);
+
+
+    private string _idName => $"floating{Value}";
+
+    async Task ChangeValue(ChangeEventArgs e)
+    {
+        _value = (TType)e?.Value;
+        await ValueChanged.InvokeAsync(_value);
+    }
+}
