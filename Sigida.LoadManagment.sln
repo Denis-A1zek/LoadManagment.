@@ -23,6 +23,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sigida.LoadManagment.Web", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sigida.LoadManagment.Blazor", "Client\Sigida.LoadManagment.Blazor\Sigida.LoadManagment.Blazor.csproj", "{749640FC-1F17-4144-A300-302F99628737}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sigida.LoadManagment.Services", "Client\Sigida.LoadManagment.Services\Sigida.LoadManagment.Services.csproj", "{4E404D15-14D0-4A76-8B18-E105844CBF58}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sigida.LoadManagment.Shared", "Client\Sigida.LoadManagment.Shared\Sigida.LoadManagment.Shared.csproj", "{BC1FBF73-BDA4-4021-A0FC-5D40C83DF65C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +57,14 @@ Global
 		{749640FC-1F17-4144-A300-302F99628737}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{749640FC-1F17-4144-A300-302F99628737}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{749640FC-1F17-4144-A300-302F99628737}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E404D15-14D0-4A76-8B18-E105844CBF58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E404D15-14D0-4A76-8B18-E105844CBF58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E404D15-14D0-4A76-8B18-E105844CBF58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E404D15-14D0-4A76-8B18-E105844CBF58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC1FBF73-BDA4-4021-A0FC-5D40C83DF65C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC1FBF73-BDA4-4021-A0FC-5D40C83DF65C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC1FBF73-BDA4-4021-A0FC-5D40C83DF65C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC1FBF73-BDA4-4021-A0FC-5D40C83DF65C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,6 +78,8 @@ Global
 		{D01BC588-66F8-4A08-8CFF-30B98485F6EB} = {5B660E74-ED6C-4D50-8EDC-61C20769CCC6}
 		{0C989AF5-07B3-443F-BC0F-F0C96469C28E} = {009B76A9-47BA-4E8A-8A0F-6BEE64A7D31F}
 		{749640FC-1F17-4144-A300-302F99628737} = {A6A89F68-501B-465D-B30B-9C1B876CE55D}
+		{4E404D15-14D0-4A76-8B18-E105844CBF58} = {A6A89F68-501B-465D-B30B-9C1B876CE55D}
+		{BC1FBF73-BDA4-4021-A0FC-5D40C83DF65C} = {A6A89F68-501B-465D-B30B-9C1B876CE55D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {59E511E4-28F3-4EF9-93BD-78F2BB6A2310}

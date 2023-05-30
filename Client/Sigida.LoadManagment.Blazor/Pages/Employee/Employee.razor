@@ -1,33 +1,72 @@
 ﻿@page "/employee"
+@using Sigida.LoadManagment.Services.Interfaces;
+@using Sigida.LoadManagment.Shared.Models;
+@using Sigida.LoadManagment.Blazor.Pages.Employee.Components;
+@inject IEmployeeService EmployeeService;
+
+<PageTitle>Сотрудники</PageTitle>
 
 <div class="container">
-    <div class="row mb-4">
-        <h1>Список сотрудников</h1>
-    </div>
+    
     <div class="row">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>fd</th>
-                    <th>fd</th>
-                    <th>fd</th>
-                    <th>fd</th>
-                    <th>fd</th>
-                </tr>
-                <tr>
-                    <td>sfdsfs</td>
-                    <td>sfdsfs</td>
-                    <td>sfdsfs</td>
-                    <td>sfdsfs</td>
-                    <td>sfdsfs</td>
-                </tr>
-            </thead>
-        </table>
+        <div class="col">
+            <div class="mb-4">
+                <h1>Список сотрудников</h1>
+            </div>
+        </div>
+        <div class="col">
+            <CreateEmployeeModal IsOpened="_isOpend" 
+                OnOpenCallback="OpenModal"
+                OnCloseCallback="CloseModal"/>
+        </div>
+    </div>
+    
+    <div class="row p-5 align-items-center rounded-3 border shadow-lg">
+        <div class="row p-4">
+            <EmployeeList Employees="_employees"
+                          OnEmployeeDeleteCallback="OnDeleteEmployeeAsync"/>
+        </div>
     </div>
 </div>
 
+@code{
 
+    private List<EmployeeViewModel> _employees { get; set; } = new();
 
-@code {
+    private async Task<List<EmployeeViewModel>> GetEmployeesAsync()
+    {
+        var result = await EmployeeService.GetAll();
 
+        return result.Payload.ToList(); ;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        _employees = await GetEmployeesAsync();
+    }
+    bool _isOpend = false;
+
+    public void OpenModal()
+    {
+        _isOpend = true;
+    }
+
+    public async Task CloseModal()
+    {
+        await LoadEmployees();
+        _isOpend = false;
+    }
+
+    public async Task OnDeleteEmployeeAsync(EmployeeViewModel employee)
+    {
+        var result = EmployeeService.DeleteAsync(employee.Id);
+        await LoadEmployees();
+    }
+
+    private async Task LoadEmployees()
+    {
+        _employees = await GetEmployeesAsync();
+        StateHasChanged();
+    }
 }
+

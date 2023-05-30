@@ -61,7 +61,7 @@ namespace Sigida.LoadManagment.Unit.Handlers
 
 
             var command = new UpdateEmployeeCommand(employeeOld.Id
-                , "New Name", "new Surname", "New LastName", newPosition, Guid.NewGuid());
+                , "New Name", "new Surname", "New LastName", newPosition);
 
             var handler = new UpdateEmployeeCommandHandler(Context, Mapper);
             

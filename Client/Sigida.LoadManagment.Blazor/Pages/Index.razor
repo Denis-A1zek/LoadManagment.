@@ -9,26 +9,21 @@ Welcome to your new app.
 
 <SurveyPrompt Title="How is Blazor working for you?" />
 
-<button class="btn btn-primary" onclick="@OpenModal">Show modal</button>
-
-<BlazorModal Title="Hello from blazor" IsOpened="isOpend">
+@*<button class="btn btn-primary" onclick="@OpenModal">Show modal</button>
+*@
+@*<BlazorModal Title="Hello from blazor" IsOpened="isOpend">
     <ModalBody>
         <h4>Is it nice</h4>
     </ModalBody>
     <ModalFooter>
         <h4>This is footer</h4>
     </ModalFooter>
-</BlazorModal>
+</BlazorModal>*@
 
-<Table T="Person" Value="Persons"/>
 
 
 @code{
-    List<Person> Persons = new List<Person>()
-    {
-        new Person() {Name ="Denis", Age =12},
-        new Person() {Name ="Miha", Age=21}
-    };
+
 
     bool isOpend = false;
 
@@ -37,12 +32,5 @@ Welcome to your new app.
         isOpend = true;
     }
 
-    public class Person
-    {
-        [Display(Name="Наименование")]
-        public string Name { get; set; }
 
-        [Display(Name = "Возраст")]
-        public int Age { get; set; }
-    }
 }
