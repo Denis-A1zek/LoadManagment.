@@ -1,0 +1,79 @@
+﻿@using Sigida.LoadManagment.Services.Interfaces;
+@using Sigida.LoadManagment.Shared.DataObject;
+@using Sigida.LoadManagment.Shared.Models;
+
+@inject IPositionsService PositionsService;
+@inject IEmployeeService EmployeeService;
+
+
+<button class="btn btn-primary m-2 float-end" onclick="@OnOpenCallback">Добавить</button>
+
+<Modal Title="Добавление сотрудника"
+       IsOpened="IsOpened">
+    <ModalBody>
+        <EditForm Model="@_employee" OnValidSubmit="@HandleSubmit">
+            <DataAnnotationsValidator/>
+            <ValidationSummary/>
+
+            <div class="m-2">
+                <FloatingInput TType="String" Type="text" Label="Имя" @bind-Value="_employee.Name"/>
+            </div>
+
+            <div class="m-2">
+                <FloatingInput TType="String" Type="text" Label="Фамилия" @bind-Value="_employee.LastName" />
+            </div>
+
+            <div class="m-2">
+                <FloatingInput TType="String" Type="text" Label="Отчество" @bind-Value="_employee.Surname" />
+            </div>
+
+            <div class="m-2">
+                <div class="form-floating">
+                    <select class="form-select" 
+                        id="floatingSelect" 
+                        aria-label="Floating label select example"
+                        @bind="_employee.PositionId">
+                        <option selected>Выберите должность</option>
+                        @foreach (var position in _positions)
+                        {
+                            <option value="@position.Id">@position.Title</option>
+                        }
+                    </select>
+                    <label for="floatingSelect">Works with selects</label>
+                </div>
+            </div>
+
+            <input type="submit" class="btn btn-primary" value="Добавить" />
+        </EditForm>
+    </ModalBody>
+
+</Modal>
+
+@code {
+    [Parameter]
+    public bool IsOpened { get; set; }
+
+    [Parameter]
+    public EventCallback OnOpenCallback { get; set; }
+    [Parameter]
+    public EventCallback OnCloseCallback { get; set; }
+
+    private EmployeeCreateDto _employee = new();
+
+    private List<PositionViewModel> _positions = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var result = await PositionsService.GetPositions();
+
+        _positions = result.Payload.ToList();
+    }
+
+    private async Task HandleSubmit()
+    {
+        var message = await EmployeeService.Create(_employee);
+        _employee = new();
+
+        await OnCloseCallback.InvokeAsync();
+    }
+}
