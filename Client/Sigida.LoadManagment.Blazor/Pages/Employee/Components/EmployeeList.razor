@@ -1,31 +1,43 @@
-﻿@using Sigida.LoadManagment.Shared.Models;
+﻿@using Sigida.LoadManagment.Services.Interfaces;
+@using Sigida.LoadManagment.Shared.Models;
 
-<table class="table table-white">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope ="col">Сотрудник</th>
-            <th scope="col">Должность</th>
-            <th scope="col">Нагрузка</th>
-            <th scope="col">Действие</th>
-        </tr>   
-    </thead>
-    <tbody class="table-group-divider">
-        @foreach (var (employee, i) in Employees.Select((employee, i) => (employee, i)))
-        {
+@inject IEmployeeService EmployeeService;
+
+@if (Employees.Count != 0)
+{
+    <table class="table table-white">
+        <thead>
             <tr>
-                <td scope="row">@i</td>
-                <td>@employee.FullName</td>
-                <td>@employee.PositionName</td>
-                <td>@employee.Load</td>
-                <td>
-                    <input type="button" class="btn btn-warning" value="Изменить" />
-                    <input type="button" class="btn btn-danger" value="Удалить" @onclick="async () => await DeleteAsync(employee)" />
-                </td>
+                <th scope="col">#</th>
+                <th scope="col">Сотрудник</th>
+                <th scope="col">Должность</th>
+                <th scope="col">Нагрузка</th>
+                <th scope="col">Действие</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody class="table-group-divider">
+            @foreach (var (employee, i) in Employees.Select((employee, i) => (employee, i)))
+            {
+                <tr>
+                    <td scope="row">@i</td>
+                    <td>@employee.FullName</td>
+                    <td>@employee.PositionName</td>
+                    <td>@employee.Load</td>
+                    <td>
+                        <input type="button" class="btn btn-warning" value="Изменить" />
+                        <input type="button" class="btn btn-danger" value="Удалить" @onclick="async () => await DeleteAsync(employee)" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h1 class="text-center">Список пуст</h1>   
+}
+
+
 
 @code {
     [Parameter]
@@ -35,12 +47,11 @@
     //public EventCallback OnEmployeeEditCallback { get; set; }
 
     [Parameter]
-    public EventCallback<EmployeeViewModel> OnEmployeeDeleteCallback { get; set; }
-    
+    public EventCallback OnEmployeeDeleteCallback { get; set; }
 
     public async Task DeleteAsync(EmployeeViewModel employee)
     {
-        await OnEmployeeDeleteCallback.InvokeAsync(employee);
-        StateHasChanged();
+        var result = await EmployeeService.DeleteAsync(employee.Id);
+        await OnEmployeeDeleteCallback.InvokeAsync();
     }   
 }

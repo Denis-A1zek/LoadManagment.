@@ -24,7 +24,7 @@
     <div class="row p-5 align-items-center rounded-3 border shadow-lg">
         <div class="row p-4">
             <EmployeeList Employees="_employees"
-                          OnEmployeeDeleteCallback="OnDeleteEmployeeAsync"/>
+                OnEmployeeDeleteCallback="LoadEmployees"/>
         </div>
     </div>
 </div>
@@ -57,16 +57,9 @@
         _isOpend = false;
     }
 
-    public async Task OnDeleteEmployeeAsync(EmployeeViewModel employee)
-    {
-        var result = EmployeeService.DeleteAsync(employee.Id);
-        await LoadEmployees();
-    }
-
     private async Task LoadEmployees()
     {
         _employees = await GetEmployeesAsync();
-        StateHasChanged();
     }
 }
 
