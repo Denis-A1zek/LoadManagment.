@@ -1,4 +1,5 @@
 ﻿@page "/employee"
+@using Blazored.Modal.Services;
 @using Sigida.LoadManagment.Services.Interfaces;
 @using Sigida.LoadManagment.Shared.Models;
 @using Sigida.LoadManagment.Blazor.Pages.Employee.Components;
@@ -14,22 +15,32 @@
                 <h1>Список сотрудников</h1>
             </div>
         </div>
-        <div class="col">
-            <CreateEmployeeModal IsOpened="_isOpend" 
-                OnOpenCallback="OpenModal"
-                OnCloseCallback="CloseModal"/>
-        </div>
+        <input type="button" class="btn btn-warning" value="Открой" @onclick="OpenModal" />
+        <Modal IsOpened = "_IsOpenedCreateModel">
+            <ModalBody>
+                <h1>Hello</h1>
+            </ModalBody>
+        </Modal>
+
     </div>
     
-    <div class="row p-5 align-items-center rounded-3 border shadow-lg">
-        <div class="row p-4">
+    <div class=" row p-5 align-items-center rounded-3 border shadow-lg">
+        <div class="p-4">
             <EmployeeList Employees="_employees"
                 OnEmployeeDeleteCallback="LoadEmployees"/>
         </div>
+
+        <div class=" row p-4 mt-2">
+            <CreateEmployee OnCloseCallback="LoadEmployees"/>
+        </div>
     </div>
+    
 </div>
 
 @code{
+
+    [CascadingParameter] 
+    public IModalService Modal { get; set; } = default!;
 
     private List<EmployeeViewModel> _employees { get; set; } = new();
 
@@ -44,22 +55,42 @@
     {
         _employees = await GetEmployeesAsync();
     }
-    bool _isOpend = false;
+
+    bool _IsOpenedCreateModel = false;
 
     public void OpenModal()
     {
-        _isOpend = true;
+        _IsOpenedCreateModel = true;
+        StateHasChanged();
     }
 
     public async Task CloseModal()
     {
         await LoadEmployees();
-        _isOpend = false;
+        _IsOpenedCreateModel = false;
+        StateHasChanged();
+    }
+
+    
+    bool _IsOpenedCreateModel1 = false;
+
+    public void OpenModal1()
+    {
+        _IsOpenedCreateModel1 = true;
+        StateHasChanged();
+    }
+
+    public async Task CloseModal1()
+    {
+        await LoadEmployees();
+        _IsOpenedCreateModel1 = false;
+        StateHasChanged();
     }
 
     private async Task LoadEmployees()
     {
         _employees = await GetEmployeesAsync();
+        StateHasChanged();
     }
 }
 

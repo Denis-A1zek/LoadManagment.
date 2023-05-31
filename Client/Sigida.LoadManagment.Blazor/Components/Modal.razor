@@ -1,40 +1,27 @@
-﻿<div class="blazor-modal @cssClass">
+﻿﻿<div class="blazor-modal @cssClass">
     <div class="blazor-modal-content">
-        
         <div class="blazor-modal-header">
-            <div class="container">
-                <div> 
-                    <button class="blazor-modal-close-button" @onclick="() => IsOpened = false">X</button>
-                </div>
-                <div>
-                    <h1 class="blazor-modal-title text-center">@Title</h1>
-                </div>
-            </div>
+            <h5 class="blazor-modal-title">@Title</h5>
+            <span class="btn btn-primary" @onclick="() => IsOpened = false">X</span>
         </div>
-
         <div class="blazor-modal-body">
             @ModalBody
         </div>
-
         <div class="blazor-modal-footer">
             @ModalFooter
         </div>
-
     </div>
 </div>
 
 @code {
     [Parameter]
-    public string Title { get; set; } = "Title";
+    public string Title { get; set; }
 
     [Parameter]
-    public RenderFragment? ModalBody { get; set; }
+    public RenderFragment ModalBody { get; set; }
 
     [Parameter]
-    public RenderFragment? ModalFooter { get; set; }
-
-    [Parameter]
-    public EventCallback OnClickCallback { get; set; }
+    public RenderFragment ModalFooter { get; set; }
 
     [Parameter]
     public bool IsOpened { get; set; }

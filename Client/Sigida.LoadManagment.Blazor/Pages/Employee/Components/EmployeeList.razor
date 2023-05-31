@@ -24,7 +24,8 @@
                     <td>@employee.PositionName</td>
                     <td>@employee.Load</td>
                     <td>
-                        <input type="button" class="btn btn-warning" value="Изменить" />
+                        
+                        <input type="button" class="btn btn-warning" value="Изменить" @onclick="OpenEditModal" />
                         <input type="button" class="btn btn-danger" value="Удалить" @onclick="async () => await DeleteAsync(employee)" />
                     </td>
                 </tr>
@@ -36,12 +37,20 @@ else
 {
     <h1 class="text-center">Список пуст</h1>   
 }
-
+<EditEmployeeModal IsOpenEditModal="_IsOpenEditModal" OnOpenCallback="OpenEditModal" />
 
 
 @code {
     [Parameter]
     public List<EmployeeViewModel> Employees { get; set; } = new();
+
+    private bool _IsOpenEditModal = false;
+
+    private void OpenEditModal()
+    {
+        _IsOpenEditModal = true;
+        StateHasChanged();
+    }
 
     //[Parameter]
     //public EventCallback OnEmployeeEditCallback { get; set; }

@@ -1,0 +1,20 @@
+﻿
+<button class="btn btn-warning" onclick="@OnOpenCallback">Изменить</button>
+
+<Modal Title="Изменение" IsOpened="IsOpenEditModal">
+    <ModalBody>
+
+    </ModalBody>
+    <ModalFooter>
+
+    </ModalFooter>
+</Modal>
+
+@code {
+    [Parameter]
+    public bool IsOpenEditModal { get; set; }
+    [Parameter]
+    public EventCallback OnOpenCallback { get; set; }
+    //[Parameter]
+    //public EventCallback OnCloseCallback { get; set; }
+}
