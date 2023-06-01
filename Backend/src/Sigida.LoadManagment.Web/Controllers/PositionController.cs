@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Sigida.LoadManagment.Application.Features;
-using Sigida.LoadManagment.Web.Controllers.Base;
 
 namespace Sigida.LoadManagment.Web.Controllers;
 

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Sigida.LoadManagment.Application.Features;
-using Sigida.LoadManagment.Web.Controllers.Base;
 using Sigida.LoadManagment.Web.Models;
 
 namespace Sigida.LoadManagment.Web.Controllers;
@@ -16,7 +15,7 @@ public class LoadController : BaseController
 
 
     [HttpPost("{id}/load")]
-    public async Task<IActionResult> Create(Guid id,CreateLoadDto request)
+    public async Task<IActionResult> Create(Guid id, CreateLoadDto request)
     {
         var value = HttpContext.Request.QueryString.Value;
         return Ok();
