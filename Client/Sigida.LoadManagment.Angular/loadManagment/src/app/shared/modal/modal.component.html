@@ -1,0 +1,18 @@
+<!-- Фон модального окна -->
+<div class="modal-backdrop fade show"></div>
+
+<!-- Модальное окно -->
+<div class="modal d-block">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ title | titlecase }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть" 
+        (click)="modalService.close()"></button>
+      </div>
+      <div class="modal-body">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="container">
+  <h1 class="text-2xl font-bold mb-4">Employee Table</h1>
+
+  <p *ngIf="isLoading" class="text-center text-lg">Loading ...</p>
+  
+  <div *ngIf="employeeService.employees">
+    <app-employee-list [employees]="employeeService.employees"></app-employee-list>
+  </div>
+
+  <app-modal *ngIf="modalService.isVisible$ | async" title="Создать сотрудника">
+    <app-create-employee></app-create-employee>
+  </app-modal>
+
+  <button class="btn btn-primary rounded-circle position-fixed bottom-0 end-0 m-3" style="width: 50px; height: 50px;"
+    (click)="modalService.open()">
+    <span class="fw-bold">+</span>
+  </button>
+  
+</div>
+

@@ -1,0 +1,30 @@
+<form class="row g-3" [formGroup]="form" (ngSubmit)="submit()">
+  
+  <div class="col-md-6">
+    <label for="inputName" class="form-label">Имя</label>
+    <input type="text" class="form-control" id="inputName" formControlName="name">
+  </div> 
+  
+  <div class="col-md-6">
+    <label for="inputSurname" class="form-label">Фамилия</label>
+    <input type="text" class="form-control" id="inputSurname" formControlName="surName">
+  </div>
+  
+  <div class="col-md-6">
+    <label for="inputLastname" class="form-label">Отчество</label>
+    <input type="text" class="form-control" id="inputLastname" formControlName="lastName">
+  </div>
+  
+  <div class="col-md-6">
+    <label for="inputState" class="form-label">Должность</label>
+    <div *ngIf="departmentService.positions">
+      <select id="inputState" class="form-select" formControlName="positionId">  
+        <option selected>Выбрать...</option>
+        <option *ngFor="let position of departmentService.positions" value={{position.id}}>{{position.title}}</option>
+      </select>
+    </div>
+  </div>
+
+  <button class="btn btn-primary float-left" type="submit">Добавить</button>
+
+</form>

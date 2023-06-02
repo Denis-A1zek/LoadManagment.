@@ -1,0 +1,42 @@
+.employee-card-container{
+  border: solid;
+  position: relative;
+}
+
+.column-emplyee {
+  float: left;
+  width: 33.33%;
+  padding: 15px;
+}
+
+.row-employee:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.employee-card-title{
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.employee-card{
+  background-color: whitesmoke;
+  padding: 15px;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.employee-card-body{
+  float: left;
+  width: 50%;
+  padding: 15px;
+}
+
+@media screen and (max-width: 600px) {
+  .column-emplyee {
+    width: 100%;
+  }
+}
+
