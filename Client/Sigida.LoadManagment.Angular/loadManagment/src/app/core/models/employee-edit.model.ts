@@ -1,8 +1,7 @@
 export interface IEmployeeEdit{
   id: string;
   name: string;
-  surName: string;
-  lastName: string;
+  surname: string;
+  lastname: string;
   positionId: string;
-  positionName: string;
 }

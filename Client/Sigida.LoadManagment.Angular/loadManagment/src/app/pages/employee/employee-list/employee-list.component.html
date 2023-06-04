@@ -18,10 +18,15 @@
         <td>{{employee.positionName}}</td>
         <td>{{employee.load}}</td>
         <td>
-          <button class="btn btn-primary" (click)="employeeService.getById(employee.id)" >Изменить</button>
-          <button class="btn btn-danger ms-2" (click)="employeeService.delete(employee.id)">Удалить</button>
+          <button class="btn btn-primary w-25" (click)="editUser(employee.id)" >Изменить</button>
+          <button class="btn btn-danger ms-2 w-25" (click)="employeeService.delete(employee.id)">Удалить</button>
         </td>
       </tr>     
     </tbody>
 </table>
+
+<app-modal *ngIf="modalService.isVisible$ | async" title="Редактирование">
+  <app-update-employee [editingEmployeeId]="editedEmployeeId"></app-update-employee>
+</app-modal>
+
 </div>

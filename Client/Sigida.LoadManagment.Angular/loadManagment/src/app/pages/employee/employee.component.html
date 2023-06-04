@@ -1,9 +1,9 @@
 <div class="container">
-  <h1 class="text-2xl font-bold mb-4">Employee Table</h1>
+  <h1 class="text-2xl font-bold mb-4">Список Сотрудник</h1>
 
   <p *ngIf="isLoading" class="text-center text-lg">Loading ...</p>
   
-  <div *ngIf="employeeService.employees">
+  <div *ngIf="employeeService.employees && !isLoading">
     <app-employee-list [employees]="employeeService.employees"></app-employee-list>
   </div>
 
