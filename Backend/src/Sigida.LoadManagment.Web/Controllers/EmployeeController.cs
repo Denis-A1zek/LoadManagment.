@@ -59,12 +59,26 @@ namespace Sigida.LoadManagment.Web.Controllers
         /// GET: employee/8bd52a69-f36d-4a22-4868-08db6129bcd9
         /// </remarks>
         /// <param name="id">Id employee</param>
-        /// <returns>EmployeeEditViewModel</returns>
+        /// <returns>EmployeeViewModel</returns>
         /// <response code="200">Success</response>
         [HttpGet("employee/{id}")]
         [ProducesResponseType(200)]
         public async Task<IActionResult> GetById(Guid id)
             => Ok(await Mediator.Send(new GetEmployeeByIdQuery(id)));
+
+        /// <summary>
+        /// Gets the employee for edit by id
+        /// </summary>
+        /// <remarks>
+        /// GET: employee/edit/8bd52a69-f36d-4a22-4868-08db6129bcd9
+        /// </remarks>
+        /// <param name="id">Id employee</param>
+        /// <returns>EmployeeEditViewModel</returns>
+        /// <response code="200">Success</response>
+        [HttpGet("employee/edit/{id}")]
+        [ProducesResponseType(200)]
+        public async Task<IActionResult> GetForEditById(Guid id)
+            => Ok(await Mediator.Send(new GetEmployeeForUpdateQuery(id)));
 
 
         /// <summary>

@@ -61,4 +61,25 @@ public class EmployeeQueryHandlersTest : BaseFixtureTest
 
         result.Payload.Values.ElementAt(0).Id.Should().Be(employeeList[0].Id);
     }
+
+    [Test]
+    public async Task GetEmployeeForUpdate_ShouldReturn_NotEmpltyPayload()
+    {
+        var fixture = new Fixture();
+        var employee = fixture.Create<Employee>();
+        var query = new GetEmployeeForUpdateQuery(employee.Id);
+        var handler = new GetEmployeeForUpdateQueryHandler(Context, Mapper);
+
+        //Act
+        await Context.Set<Employee>().AddAsync(employee);
+        await Context.SaveChangesAsync();
+
+        var result = await handler.Handle(query, CancellationToken.None);
+
+        //Assert
+        result.Payload.Should().BeOfType<EmployeeEditViewModel>()
+            .Should().NotBeNull();
+
+        result.Payload.Id.Should().Be(employee.Id);
+    }
 }

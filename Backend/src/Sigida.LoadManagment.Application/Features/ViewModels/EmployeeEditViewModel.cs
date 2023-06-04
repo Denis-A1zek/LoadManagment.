@@ -16,11 +16,9 @@ public sealed record EmployeeEditViewModel : IMapWith<Employee>
     public string Surname { get; set; }
     public string Lastname { get; set; }
     public Guid PositionId { get; set; }
-    public string PositionName { get; set; }
 
     public void Mapping(Profile profile)
     {
-        profile.CreateMap<Employee, EmployeeEditViewModel>()
-            .ForMember(m => m.PositionName, o=> o.MapFrom(s => s.Position.Title));
+        profile.CreateMap<Employee, EmployeeEditViewModel>();
     }
 }
