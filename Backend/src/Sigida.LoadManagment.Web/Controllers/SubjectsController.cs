@@ -54,4 +54,37 @@ public class SubjectsController : BaseController
     [ProducesResponseType(200)]
     public async Task<IActionResult> Delete(Guid id)
         => Ok(await Mediator.Send(new DeleteSubjectCommand(id)));
+
+    /// <summary>
+    /// Gets the subject by id
+    /// </summary>
+    /// <remarks>
+    /// GET: subject/8bd52a69-f36d-4a22-4868-08db6129bcd9
+    /// </remarks>
+    /// <param name="id">Id subject</param>
+    /// <returns>SubjectViewModel</returns>
+    /// <response code="200">Success</response>
+    [HttpGet("subject/{id}")]
+    [ProducesResponseType(200)]
+    public async Task<IActionResult> GetById(Guid id)
+        => Ok(await Mediator.Send(new GetSubjectByIdQuery(id)));
+
+    /// <summary>
+    /// Updates subject data
+    /// </summary>
+    /// <remarks>
+    /// PUT /subject
+    /// {
+    ///     Id: "Guid",
+    ///     Name: "string",
+    ///     Code: "string",
+    /// }
+    /// </remarks>
+    /// <param name="request"></param>
+    /// <returns>Unit</returns>
+    /// <response code="200">Success</response>
+    [HttpPut]
+    [Route("subject")]
+    public async Task<IActionResult> Update(UpdateSubjectCommand request)
+        => Ok(await Mediator.Send(request));
 }

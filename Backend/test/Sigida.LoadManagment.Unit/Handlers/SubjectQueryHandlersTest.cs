@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Sigida.LoadManagment.Application.Features.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,5 +31,28 @@ public class SubjectQueryHandlersTest : BaseFixtureTest
         //Assert
         result.Payload.Should().NotBeNull();
         result.Payload.Count().Should().Be(subjectsCount);
+    }
+
+    [Test]
+    public async Task GetSubjectByIdQuery_ReturnResult_With_NotEmptyPayload()
+    {
+        //Arrange
+
+        var fixture = new Fixture();
+        var subject = fixture.Create<Subject>();
+        var query = new GetSubjectByIdQuery(subject.Id);
+        var handler = new GetSubjectByIdQueryHandler(Context, Mapper);
+
+        //Act
+        await Context.Set<Subject>().AddAsync(subject);
+        await Context.SaveChangesAsync();
+
+        var result = await handler.Handle(query, CancellationToken.None);
+
+        //Assert
+        result.Payload.Should().BeOfType<SubjectViewModel>()
+            .Should().NotBeNull();
+
+        result.Payload.Id.Should().Be(subject.Id);
     }
 }

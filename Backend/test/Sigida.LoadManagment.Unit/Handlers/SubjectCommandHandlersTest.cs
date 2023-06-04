@@ -44,4 +44,33 @@ public class SubjectCommandHandlersTest : BaseFixtureTest
         itemInDb.Should().Be(null);
         result.Should().NotBeNull().Should().NotBe(Guid.Empty);
     }
+
+    [Test]
+    public async Task UpdateSubjectCommandHandler_ReturnResult_Success_And_UpdateSubjectInDb()
+    {
+        //Arrange
+        var fixture = new Fixture();
+        var subjectOld = fixture.Create<Subject>();
+        Guid newPosition = Guid.NewGuid();
+
+
+        var command = new UpdateSubjectCommand(subjectOld.Id, "New Code", "new Name");
+
+        var handler = new UpdateSubjectCommandHandler(Context);
+
+        //Act
+        await Context.Set<Subject>().AddAsync(subjectOld);
+        await Context.SaveChangesAsync();
+
+        var result = await handler.Handle(command, CancellationToken.None);
+
+        var itemInDb = Context.Set<Subject>().FirstOrDefault(p => p.Id == subjectOld.Id);
+
+
+        //Assert
+        itemInDb.Should().NotBeNull();
+        itemInDb.Id.Should().Be(subjectOld.Id);
+        result.Should().NotBeNull();
+        result.IsSuccess.Should().BeTrue();
+    }
 }

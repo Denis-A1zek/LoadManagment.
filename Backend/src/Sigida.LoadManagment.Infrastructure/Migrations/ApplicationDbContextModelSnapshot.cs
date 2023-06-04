@@ -124,21 +124,28 @@ namespace Sigida.LoadManagment.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("36213718-7762-4c67-9674-9d93544a5ae6"),
+                            Id = new Guid("3ab27f48-e402-47fd-b557-de06ad8fa040"),
                             MaxLoad = 600.0,
                             MinLoad = 0.0,
                             Title = "Доцент"
                         },
                         new
                         {
-                            Id = new Guid("371ae21a-9cda-4a07-964e-9a5f27d67fa5"),
+                            Id = new Guid("e1a9780f-4145-423a-8fac-277fb89b38c3"),
+                            MaxLoad = 800.0,
+                            MinLoad = 0.0,
+                            Title = "Ассистент"
+                        },
+                        new
+                        {
+                            Id = new Guid("565f54c9-b9f2-4214-892d-df0a8fd020e2"),
                             MaxLoad = 900.0,
                             MinLoad = 0.0,
                             Title = "Ст. преподаватель"
                         },
                         new
                         {
-                            Id = new Guid("0e7bf3ac-09fe-466e-8aef-521659c48893"),
+                            Id = new Guid("44007258-91fe-41ed-a090-9591c75afd34"),
                             MaxLoad = 1200.0,
                             MinLoad = 0.0,
                             Title = "Ассистент"
