@@ -1,0 +1,28 @@
+<div *ngIf="subjects.length === 0"><p>Список пуст...</p></div>
+<div *ngIf="subjects.length > 0">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Код предмета</th>
+        <th scope="col">Название</th>
+        <th scope="col">Действие</th>
+      </tr>
+    </thead>
+    
+    <tbody *ngFor="let subject of subjects; let i = index">
+      <tr>
+        <th scope="row">{{i + 1}}</th>
+        <td>{{subject.code}}</td>
+        <td>{{subject.name}}</td>
+        <td>
+          <button class="btn btn-primary w-25" (click)="update(subject)">Изменить</button>
+          <button class="btn btn-danger ms-2 w-25" (click)="subjectService.delete(subject.id)">Удалить</button>
+        </td>
+      </tr>     
+    </tbody>
+</table>
+
+<app-modal *ngIf="modalService.isVisible$ | async" title="Редактирование">
+  <app-update-subject [editingSubject]="editingSubject"></app-update-subject>
+</app-modal>

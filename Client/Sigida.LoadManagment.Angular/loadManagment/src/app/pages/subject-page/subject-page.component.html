@@ -1,0 +1,19 @@
+<div class="container">
+  <h1 class="text-2xl font-bold mb-4">Список Предметов</h1>
+
+  <p *ngIf="isLoading" class="text-center text-lg">Loading ...</p>
+  
+  <div *ngIf="subjectService.subjects && !isLoading">
+    <app-subject-list [subjects]="subjectService.subjects"></app-subject-list>
+  </div>
+
+  <app-modal *ngIf="modalService.isVisible$ | async" title="Добавить Предмет">
+    <app-create-subject></app-create-subject>
+  </app-modal>
+
+  <button class="btn btn-primary rounded-circle position-fixed bottom-0 end-0 m-3" style="width: 50px; height: 50px;"
+    (click)="modalService.open()">
+    <span class="fw-bold">+</span>
+  </button>
+
+</div>

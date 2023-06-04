@@ -1,0 +1,15 @@
+<form class="row g-3" [formGroup]="form" (ngSubmit)="submit()">
+  
+  <div class="col-md-6">
+    <label for="inputCode" class="form-label">Код </label>
+    <input type="text" class="form-control" id="inputCode" formControlName="code">
+  </div> 
+  
+  <div class="col-md-6">
+    <label for="inputName" class="form-label">Название</label>
+    <input type="text" class="form-control" id="inputName" formControlName="name">
+  </div>
+  
+  <button class="btn btn-primary float-left" type="submit">Добавить</button>
+
+</form>
