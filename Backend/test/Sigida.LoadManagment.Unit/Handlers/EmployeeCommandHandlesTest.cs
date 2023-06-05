@@ -12,7 +12,7 @@ namespace Sigida.LoadManagment.Unit.Handlers
             var fixture = new Fixture();
             var command = fixture.Create<CreateEmployeeCommand>();
 
-            var handler = new CreateEmployeeCommandHandler(Context, Mapper);
+            var handler = new CreateEmployeeCommandHandler(Context);
             var result = await handler.Handle(command, CancellationToken.None);
 
             var itemInDb = Context.Set<Employee>().FirstOrDefault(p => p.Id == result.Payload);

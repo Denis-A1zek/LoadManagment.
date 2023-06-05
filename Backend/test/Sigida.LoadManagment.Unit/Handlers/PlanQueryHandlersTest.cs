@@ -2,6 +2,7 @@
 using AutoMapper;
 using FluentAssertions;
 using Sigida.LoadManagment.Application.Features;
+using Sigida.LoadManagment.Application.Features.ViewModels;
 using Sigida.LoadManagment.Application.Mappings;
 using Sigida.LoadManagment.Domain.Entities;
 using Sigida.LoadManagment.Infrastructure.Database;
@@ -55,6 +56,29 @@ namespace Sigida.LoadManagment.Unit.Handlers
             result.Payload.Count().Should().Be(plansCount);
         }
         #endregion
+
+        [Test]
+        public async Task GetPlanByIdQuery_ReturnResult_With_NotEmptyPayload()
+        {
+            //Arrange
+
+            var fixture = new Fixture();
+            var plan = fixture.Build<Plan>().With(p => p.Loads, new List<Load>()).Create();
+            var query = new GetPlanByIdQuery(plan.Id);
+            var handler = new GetPlanByIdQueryHandler(Context, Mapper);
+
+            //Act
+            await Context.Set<Plan>().AddAsync(plan);
+            await Context.SaveChangesAsync();
+
+            var result = await handler.Handle(query, CancellationToken.None);
+
+            //Assert
+            result.Payload.Should().BeOfType<PlanViewModel>()
+                .Should().NotBeNull();
+
+            result.Payload.Id.Should().Be(plan.Id);
+        }
 
 
     }

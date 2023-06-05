@@ -15,7 +15,7 @@ public class PlanCommandHandlersTest : BaseFixtureTest
     public async Task CreatePlanCommandHandler_ReturnsResult_WithGuid_And_CreatedNewPlanInDatabase()
     {
         //Arrange
-        var command = new CreatePlanCommand("Some value");
+        var command = new CreatePlanCommand("Some title","Some value");
 
         //Act
         var handler = new CreatePlanCommandHandler(Context, Mapper);
