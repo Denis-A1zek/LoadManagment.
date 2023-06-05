@@ -6,7 +6,7 @@ namespace Sigida.LoadManagment.Web.Controllers;
 
 [ApiController]
 [Route("api/plan")]
-public class LoadController : BaseController
+public class PlanLoadController : BaseController
 {
     
     [HttpGet("{id}/loads")]
@@ -16,8 +16,7 @@ public class LoadController : BaseController
 
     [HttpPost("{id}/load")]
     public async Task<IActionResult> Create(Guid id, CreateLoadDto request)
-    {
-        var value = HttpContext.Request.QueryString.Value;
-        return Ok();
-    }
+        => Ok(await Mediator.Send(
+            new CreatePlanLoadCommand(
+                id,request.SpecialtyId, request.SubjectId,request.SubjectSchedule)));
 }

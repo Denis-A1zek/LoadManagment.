@@ -1,9 +1,10 @@
-﻿namespace Sigida.LoadManagment.Web.Models;
+﻿using Sigida.LoadManagment.Application.Features.ViewModels;
+
+namespace Sigida.LoadManagment.Web.Models;
 
 public sealed record class CreateLoadDto
 {
-    public bool IsCouting { get; init; }
     public Guid SpecialtyId { get; init; }
     public Guid SubjectId { get; init; }
-    public Guid DepartmentId { get; init; }
+    public IEnumerable<SubjectScheduleDto> SubjectSchedule { get; set; }
 }
