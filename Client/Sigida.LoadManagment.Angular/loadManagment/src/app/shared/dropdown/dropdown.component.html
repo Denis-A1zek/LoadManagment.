@@ -1,0 +1,9 @@
+<div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle {{isDroped ? 'show' : ''}}" type="button" data-bs-toggle="dropdown" 
+    (click)="isDroped = !isDroped">
+    Dropdown button
+  </button>
+  <ul class="dropdown-menu {{isDroped ? 'show' : ''}}">
+    <ng-content></ng-content>
+  </ul>
+</div>

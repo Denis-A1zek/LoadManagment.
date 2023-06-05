@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4 shadow">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Load Managment</a>
     <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -6,13 +6,18 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" routerLink="">Главная</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="employees">Сотрудники</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="subjects">Предметы</a>
-        </li>
+        <div class="dropdown">
+          <a class="nav-link dropdown-toggle {{isDroped ? 'show' : ''}}" type="button" data-bs-toggle="dropdown" 
+            (click)="isDroped = !isDroped">
+            Общие данные
+          </a>
+          <ul class="dropdown-menu {{isDroped ? 'show' : ''}}">
+            <li><a class="dropdown-item" routerLink="employees" (click)="isDroped = !isDroped" >Сотрудники</a></li>
+            <li><a class="dropdown-item" routerLink="subjects" (click)="isDroped = !isDroped">Предметы</a></li>
+          </ul>
+        </div>
       </ul>
     </div>
   </div>
 </nav>
+

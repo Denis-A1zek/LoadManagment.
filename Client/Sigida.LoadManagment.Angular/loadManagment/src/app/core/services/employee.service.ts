@@ -18,8 +18,6 @@ export class EmployeeService {
   getAll() : Observable<IResult<IEmployee[]>>{
     return this.http.get<IResult<IEmployee[]>>(environment.apiUrl.concat('employees'))
       .pipe(
-        delay(500),
-        retry(2),
         tap(result => this.employees = result.payload)
       )
   }

@@ -1,0 +1,29 @@
+<form class="row g-3" [formGroup]="form" (ngSubmit)="submit()">
+  
+  <div class="col-md-6">
+    <label for="inputTitle" class="form-label">Название плана *</label>
+    <input type="text" class="form-control" id="inputTitle" formControlName="title">
+  </div> 
+
+  <div class="col-md-6">
+    <label for="inputDesc" class="form-label">Описание</label>
+    <input type="text" class="form-control" id="inputDesc" formControlName="description">
+    <p class="small text-black-50">Дополнительное описание</p>
+  </div> 
+  
+  <div class="col-md-6">
+    <label for="inputStart" class="form-label">Дата начала плана</label>
+    <input type="date" class="form-control" id="inputStart" formControlName="start">
+    <p class="small text-black-50">Дата с 1 сентября текущего года, если пустое</p>
+  </div>
+  
+  <div class="col-md-6">
+    <label for="inputEnd" class="form-label">Дата окончания</label>
+    <input type="date" class="form-control" id="inputEnd" formControlName="end">
+    <p class="small text-black-50">Дата с 1 июля следующего года, если пустое</p>
+  </div>
+  
+  <button class="btn btn-primary float-left" type="submit">Добавить</button>
+
+</form>
+

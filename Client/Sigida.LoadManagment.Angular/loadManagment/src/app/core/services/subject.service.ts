@@ -19,8 +19,6 @@ export class SubjectService {
   getAll() : Observable<IResult<ISubject[]>>{
     return this.http.get<IResult<ISubject[]>>(environment.apiUrl.concat('subjects'))
       .pipe(
-        delay(500),
-        retry(2),
         tap(result => this.subjects = result.payload)
       )
   }

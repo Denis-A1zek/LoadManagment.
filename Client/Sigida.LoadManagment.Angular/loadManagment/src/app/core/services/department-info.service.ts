@@ -17,8 +17,17 @@ export class DepartmentInfoService {
   getAllPositions() : Observable<IResult<IPosition[]>>{
     return this.http.get<IResult<IPosition[]>>(environment.apiUrl.concat('positions'))
       .pipe(
-        delay(100),
-        retry(2),
+        retry(5),
+        tap(result => {
+          if(!result.isSuccess) {}
+          this.positions = result.payload;
+        })
+      )
+  }
+  getAllSpecialities(){
+    return this.http.get<IResult<IPosition[]>>(environment.apiUrl.concat('positions'))
+      .pipe(
+        retry(5),
         tap(result => {
           if(!result.isSuccess) {}
           this.positions = result.payload;
