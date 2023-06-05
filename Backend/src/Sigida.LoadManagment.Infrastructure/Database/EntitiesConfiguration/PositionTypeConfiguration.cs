@@ -19,6 +19,6 @@ internal sealed class PositionTypeConfiguration : IdentityTypeConfiguration<Posi
             new Position() { Id = Guid.NewGuid(), Title = "Доцент", MinLoad = 0, MaxLoad = 600, },
             new Position() { Id = Guid.NewGuid(), Title = "Ассистент", MinLoad = 0, MaxLoad = 800, },
         new Position() { Id = Guid.NewGuid(), Title = "Ст. преподаватель", MinLoad = 0, MaxLoad = 900, },
-            new Position() { Id = Guid.NewGuid(), Title = "Ассистент", MinLoad = 0, MaxLoad = 1200, });
+            new Position() { Id = Guid.NewGuid(), Title = "Профессор", MinLoad = 0, MaxLoad = 1200, });
     }
 }
