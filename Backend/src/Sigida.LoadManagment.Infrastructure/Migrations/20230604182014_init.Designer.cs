@@ -12,8 +12,8 @@ using Sigida.LoadManagment.Infrastructure.Database;
 namespace Sigida.LoadManagment.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230528155110_init3")]
-    partial class init3
+    [Migration("20230604182014_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -99,6 +99,11 @@ namespace Sigida.LoadManagment.Infrastructure.Migrations
                     b.Property<DateTime>("Start")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Plans", (string)null);
@@ -123,6 +128,36 @@ namespace Sigida.LoadManagment.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Positions", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("8c5cb5f0-6ada-4421-8c93-fad46d0ff8b5"),
+                            MaxLoad = 600.0,
+                            MinLoad = 0.0,
+                            Title = "Доцент"
+                        },
+                        new
+                        {
+                            Id = new Guid("672e1613-1b8f-4fcc-b8d3-5d6f2e933f2d"),
+                            MaxLoad = 800.0,
+                            MinLoad = 0.0,
+                            Title = "Ассистент"
+                        },
+                        new
+                        {
+                            Id = new Guid("bfb381cd-c500-4ed9-86a4-64664942b16e"),
+                            MaxLoad = 900.0,
+                            MinLoad = 0.0,
+                            Title = "Ст. преподаватель"
+                        },
+                        new
+                        {
+                            Id = new Guid("66d37ac6-0906-4696-80f0-072612d4fecf"),
+                            MaxLoad = 1200.0,
+                            MinLoad = 0.0,
+                            Title = "Профессор"
+                        });
                 });
 
             modelBuilder.Entity("Sigida.LoadManagment.Domain.Entities.Specialty", b =>

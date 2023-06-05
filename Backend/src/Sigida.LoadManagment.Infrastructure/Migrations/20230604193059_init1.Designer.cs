@@ -12,8 +12,8 @@ using Sigida.LoadManagment.Infrastructure.Database;
 namespace Sigida.LoadManagment.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230528155712_add_init_value_for_position")]
-    partial class add_init_value_for_position
+    [Migration("20230604193059_init1")]
+    partial class init1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -68,6 +68,9 @@ namespace Sigida.LoadManagment.Infrastructure.Migrations
                     b.Property<Guid>("SpecialtyId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
                     b.Property<Guid>("SubjectId")
                         .HasColumnType("uniqueidentifier");
 
@@ -99,6 +102,11 @@ namespace Sigida.LoadManagment.Infrastructure.Migrations
                     b.Property<DateTime>("Start")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Plans", (string)null);
@@ -127,24 +135,31 @@ namespace Sigida.LoadManagment.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("36213718-7762-4c67-9674-9d93544a5ae6"),
+                            Id = new Guid("1c920cfd-7394-4dc8-991f-b939741c0285"),
                             MaxLoad = 600.0,
                             MinLoad = 0.0,
                             Title = "Доцент"
                         },
                         new
                         {
-                            Id = new Guid("371ae21a-9cda-4a07-964e-9a5f27d67fa5"),
+                            Id = new Guid("a006f1dc-f3e7-4bd1-9647-f818e035c5db"),
+                            MaxLoad = 800.0,
+                            MinLoad = 0.0,
+                            Title = "Ассистент"
+                        },
+                        new
+                        {
+                            Id = new Guid("dbe931e0-7d09-4180-8b20-c644f0451932"),
                             MaxLoad = 900.0,
                             MinLoad = 0.0,
                             Title = "Ст. преподаватель"
                         },
                         new
                         {
-                            Id = new Guid("0e7bf3ac-09fe-466e-8aef-521659c48893"),
+                            Id = new Guid("1ba7e478-21d8-4bfb-9fb3-0d4e5681c8d8"),
                             MaxLoad = 1200.0,
                             MinLoad = 0.0,
-                            Title = "Ассистент"
+                            Title = "Профессор"
                         });
                 });
 
@@ -187,6 +202,34 @@ namespace Sigida.LoadManagment.Infrastructure.Migrations
                     b.ToTable("Subjects", (string)null);
                 });
 
+            modelBuilder.Entity("Sigida.LoadManagment.Domain.Entities.SubjectSchedule", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("LabHours")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LectureHours")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("LoadId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("PracticeHours")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SelfHours")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LoadId");
+
+                    b.ToTable("SubjectSchedule");
+                });
+
             modelBuilder.Entity("Sigida.LoadManagment.Domain.Entities.Employee", b =>
                 {
                     b.HasOne("Sigida.LoadManagment.Domain.Entities.Position", "Position")
@@ -221,6 +264,18 @@ namespace Sigida.LoadManagment.Infrastructure.Migrations
                     b.Navigation("Specialty");
 
                     b.Navigation("Subject");
+                });
+
+            modelBuilder.Entity("Sigida.LoadManagment.Domain.Entities.SubjectSchedule", b =>
+                {
+                    b.HasOne("Sigida.LoadManagment.Domain.Entities.Load", null)
+                        .WithMany("SubjectSchedules")
+                        .HasForeignKey("LoadId");
+                });
+
+            modelBuilder.Entity("Sigida.LoadManagment.Domain.Entities.Load", b =>
+                {
+                    b.Navigation("SubjectSchedules");
                 });
 
             modelBuilder.Entity("Sigida.LoadManagment.Domain.Entities.Plan", b =>

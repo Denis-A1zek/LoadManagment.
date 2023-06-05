@@ -8,28 +8,17 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Sigida.LoadManagment.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class init2 : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Degrees",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Degrees", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Plans",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     Start = table.Column<DateTime>(type: "datetime2", nullable: false),
                     End = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -133,12 +122,14 @@ namespace Sigida.LoadManagment.Infrastructure.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Degrees",
-                columns: new[] { "Id", "Title" },
+                table: "Positions",
+                columns: new[] { "Id", "MaxLoad", "MinLoad", "Title" },
                 values: new object[,]
                 {
-                    { new Guid("6b4730da-df42-4c30-9528-3b8ae056e7f8"), "Ст. преподаватель" },
-                    { new Guid("fef245f6-ac00-4c95-9290-5d9fddb1cc1a"), "Доцент" }
+                    { new Guid("66d37ac6-0906-4696-80f0-072612d4fecf"), 1200.0, 0.0, "Профессор" },
+                    { new Guid("672e1613-1b8f-4fcc-b8d3-5d6f2e933f2d"), 800.0, 0.0, "Ассистент" },
+                    { new Guid("8c5cb5f0-6ada-4421-8c93-fad46d0ff8b5"), 600.0, 0.0, "Доцент" },
+                    { new Guid("bfb381cd-c500-4ed9-86a4-64664942b16e"), 900.0, 0.0, "Ст. преподаватель" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -165,9 +156,6 @@ namespace Sigida.LoadManagment.Infrastructure.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Degrees");
-
             migrationBuilder.DropTable(
                 name: "Employees");
 
