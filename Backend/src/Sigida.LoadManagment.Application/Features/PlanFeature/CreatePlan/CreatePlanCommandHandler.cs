@@ -26,6 +26,7 @@ public sealed class CreatePlanCommandHandler
     {
         var plan = new Plan()
         {
+            Title = request.Title,
             Description = request.Description,
             Start = request.StartDate.Value,
             End = request.EndDate.Value,

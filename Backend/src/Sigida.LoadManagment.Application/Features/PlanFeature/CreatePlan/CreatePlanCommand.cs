@@ -13,16 +13,18 @@ namespace Sigida.LoadManagment.Application.Features;
 
 public sealed record CreatePlanCommand : IRequest<IResult<Guid>>
 {
-    public CreatePlanCommand(string description,
+    public CreatePlanCommand(string title, string description,
         DateTime? startDate = null,
         DateTime? endDate = null)
     {
+        Title = title;
         Description = description;
         StartDate = startDate ?? new DateTime(DateTime.Now.Year, 09, 1);
         EndDate = endDate ?? StartDate.Value.AddMonths(10);
     }
 
-    public string Description { get; init; } = null!;
+    public string Title { get; set; } = null!;
+    public string? Description { get; init; }
     public DateTime? StartDate { get; init; }
     public DateTime? EndDate { get; init; }
 }

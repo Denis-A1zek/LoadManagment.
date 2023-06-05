@@ -23,7 +23,8 @@ public sealed class GetAllPlansQueryHandler
     public GetAllPlansQueryHandler(ApplicationDbContext context, IMapper mapper)
         => (_context, _mapper) = (context, mapper);
 
-    public async Task<IResult<IEnumerable<PlanViewModel>>> Handle(GetAllPlansQuery request, CancellationToken cancellationToken)
+    public async Task<IResult<IEnumerable<PlanViewModel>>> Handle
+        (GetAllPlansQuery request, CancellationToken cancellationToken)
     {
         var source = _context.Plans.AsNoTracking()
             .Select(x => x)
