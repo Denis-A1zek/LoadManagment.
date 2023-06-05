@@ -12,6 +12,7 @@ namespace Sigida.LoadManagment.Application.Features.ViewModels;
 public sealed record PlanViewModel : IMapWith<Plan>
 {
     public Guid Id { get; init; }
+    public string Title { get; init; }
     public string Description { get; init; }
     public int LoadCount { get; init; }
     public string Period { get; init; }

@@ -15,7 +15,7 @@ public abstract class BaseHandler
     private readonly ApplicationDbContext _context;
 
     public BaseHandler(ApplicationDbContext context)
-        => Context = context;
+        => _context = context;
 
     public BaseHandler(ApplicationDbContext context,IMapper mapper) : this(context)
         => (_mapper) = (mapper);
