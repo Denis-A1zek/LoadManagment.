@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Sigida.LoadManagment.Application.Common.Models;
 using Sigida.LoadManagment.Application.Features.Base;
 using Sigida.LoadManagment.Application.Features.ViewModels;
 using Sigida.LoadManagment.Domain.Entities;
@@ -16,31 +17,48 @@ public sealed record CreatePlanLoadCommand : IRequest<IResult<Guid>>
 {
     public CreatePlanLoadCommand
         (Guid planId, Guid specialtyId, Guid subjectId, 
-        IEnumerable<SubjectScheduleDto> subjectSchedule)
+        IEnumerable<SubjectScheduleDto> subjectSchedules)
     {
         PlanId=planId;
         SpecialtyId=specialtyId;
         SubjectId=subjectId;
-        SubjectSchedule=subjectSchedule;
+        SubjectSchedules=subjectSchedules;
     }
 
     public Guid PlanId { get; set; }
     public Guid SpecialtyId { get; init; }
     public Guid SubjectId { get; init; }
-    public IEnumerable<SubjectScheduleDto> SubjectSchedule { get; set; }
+    public IEnumerable<SubjectScheduleDto> SubjectSchedules { get; set; }
 
 }
 
 
 public sealed class CreatePlanLoadCommandHandler 
-    : BaseHandler, IRequestHandler<CreatePlanCommand, IResult<Guid>>
+    : BaseHandler, IRequestHandler<CreatePlanLoadCommand, IResult<Guid>>
 {
     public CreatePlanLoadCommandHandler
         (ApplicationDbContext context, IMapper mapper) : base(context, mapper) { }
 
-    public Task<IResult<Guid>> Handle(CreatePlanCommand request, CancellationToken cancellationToken)
+    public async Task<IResult<Guid>> Handle(CreatePlanLoadCommand request, CancellationToken cancellationToken)
     {
-        //TO-DO
-        throw new NotImplementedException();
+        var subjectSchedules = new List<SubjectSchedule>();
+
+        foreach (var subjectSchedule in request.SubjectSchedules)
+        {
+            subjectSchedules.Add(Mapper.Map<SubjectScheduleDto, SubjectSchedule>(subjectSchedule));
+        }
+
+        var load = new Load()
+        {
+            PlanId = request.PlanId,
+            SpecialtyId = request.SpecialtyId,
+            SubjectId = request.SubjectId,
+            SubjectSchedules = subjectSchedules
+        };
+
+        await Context.Set<Load>().AddAsync(load);
+        await Context.SaveChangesAsync();
+
+        return Result<Guid>.Success(load.Id);
     }
 }

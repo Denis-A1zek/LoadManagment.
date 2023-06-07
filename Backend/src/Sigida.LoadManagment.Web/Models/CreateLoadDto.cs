@@ -6,5 +6,5 @@ public sealed record class CreateLoadDto
 {
     public Guid SpecialtyId { get; init; }
     public Guid SubjectId { get; init; }
-    public IEnumerable<SubjectScheduleDto> SubjectSchedule { get; set; }
+    public List<SubjectScheduleDto> SubjectSchedule { get; set; }
 }
