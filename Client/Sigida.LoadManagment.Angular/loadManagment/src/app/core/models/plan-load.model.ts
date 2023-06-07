@@ -1,7 +1,13 @@
+import { ISubjectSchedules } from "./subject-schedules.model";
+
 export interface IPlanLoadViewModel{
-  id?: string;
-  title: string;
-  description?: string;
-  start?: Date;
-  end?: Date;
+  id?: string,
+  planId?: string,
+  subjectId?: string,
+  subjectCode?: string,
+  subjectName?: string,
+  specialtyId?: string,
+  specialtyCode?: string,
+  specialtyName?: string,
+  subjectSchedule?: ISubjectSchedules[];
 }

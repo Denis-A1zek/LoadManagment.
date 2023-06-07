@@ -1,0 +1,64 @@
+<div>
+<div class="row">
+  <div class="col">
+    <div class="col">
+      <select class="form-select" [selectedIndex]="courseNumber$" [(ngModel)]="selectedCourse" (ngModelChange)="onStringChange()">
+        <option selected disabled>Курс №</option>
+        <option value="1">Первый</option>
+        <option value="2">Второй</option>
+        <option value="3">Третий</option>
+        <option value="4">Четвертвый</option>
+      </select>
+    </div>
+  </div>
+  <div class="col">
+    <label>Семестр 1</label> 
+      <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Лекции</span>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+        placeholder="0" [(ngModel)]="subjectFirstSemester.lectureHours">
+      </div>
+      <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Лабы.</span>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+        placeholder="0" [(ngModel)]="subjectFirstSemester.labHours">
+      </div>
+      <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Практич.</span>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+        placeholder="0"  [(ngModel)]="subjectFirstSemester.practiceHours">
+      </div>
+      <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-sm">СР</span>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+        placeholder="0" [(ngModel)]="subjectFirstSemester.selfHours">
+      </div>
+  </div>
+  <div class="col">
+    <label>Семестр 2</label> 
+      <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Лекции</span>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+        placeholder="0" [(ngModel)]="subjectSecondSemester.lectureHours">
+      </div>
+      <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Лабы.</span>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+        placeholder="0" [(ngModel)]="subjectSecondSemester.labHours">
+      </div>
+      <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Практич.</span>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+        placeholder="0"  [(ngModel)]="subjectSecondSemester.practiceHours">
+      </div>
+      <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-sm">СР</span>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+        placeholder="0" [(ngModel)]="subjectSecondSemester.selfHours">
+      </div>
+  </div>
+  </div>
+  
+  <button class="btn btn-primary" (click)="submit()">Добавить</button>
+
+</div>

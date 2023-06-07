@@ -3,12 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { EmployeeComponent } from './pages/employee/employee.component';
 import { SubjectPageComponent } from './pages/subject-page/subject-page.component';
 import { PlansPageComponent } from './pages/plans-page/plans-page.component';
-import { PlanManagementPageComponent } from './pages/plan-management-page/plan-management-page.component';
+import { PlanManagerComponent } from './pages/plan-manager/plan-manager.component';
 
 const routes: Routes = [
   {path: '', component: PlansPageComponent},
   {path: 'employees', component: EmployeeComponent},
-  {path: 'plan/:id', component: PlanManagementPageComponent},
+  {path: 'plan/:id', component: PlanManagerComponent},
   {path: 'subjects', component: SubjectPageComponent}
 ];
 

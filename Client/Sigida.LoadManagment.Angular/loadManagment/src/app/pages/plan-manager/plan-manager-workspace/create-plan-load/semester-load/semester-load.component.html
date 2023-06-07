@@ -1,0 +1,21 @@
+<label>Семестр {{semesterNumber}}</label> 
+<div class="input-group input-group-sm mb-3">
+  <span class="input-group-text" id="inputGroup-sizing-sm">Лекции</span>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+  placeholder="0" [(ngModel)]="semesterLoad.lectureHours">
+</div>
+<div class="input-group input-group-sm mb-3">
+  <span class="input-group-text" id="inputGroup-sizing-sm">Лабы.</span>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+  placeholder="0" [(ngModel)]="semesterLoad.labHours">
+</div>
+<div class="input-group input-group-sm mb-3">
+  <span class="input-group-text" id="inputGroup-sizing-sm">Практич.</span>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+  placeholder="0"  [(ngModel)]="semesterLoad.practiceHours">
+</div>
+<div class="input-group input-group-sm mb-3">
+  <span class="input-group-text" id="inputGroup-sizing-sm">СР</span>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+  placeholder="0" [(ngModel)]="semesterLoad.selfHours">
+</div>

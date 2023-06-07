@@ -16,11 +16,18 @@ import { SubjectListComponent } from './pages/subject-page/subject-list/subject-
 import { CreateSubjectComponent } from './pages/subject-page/create-subject/create-subject.component';
 import { UpdateSubjectComponent } from './pages/subject-page/update-subject/update-subject.component';
 import { PlansPageComponent } from './pages/plans-page/plans-page.component';
-import { PlanManagementPageComponent } from './pages/plan-management-page/plan-management-page.component';
-import { PlanLoadCardComponent } from './pages/plan-management-page/plan-load-card/plan-load-card.component';
+
 import { PlanCardComponent } from './pages/plans-page/plan-card/plan-card.component';
 import { CreatePlanComponent } from './pages/plans-page/create-plan/create-plan.component';
 import { DropdownComponent } from './shared/dropdown/dropdown.component';
+
+import { PlanManagerComponent } from './pages/plan-manager/plan-manager.component';
+import { PlanManagerWorkspaceComponent } from './pages/plan-manager/plan-manager-workspace/plan-manager-workspace.component';
+import { PlanLoadCardComponent } from './pages/plan-manager/plan-load-card/plan-load-card.component';
+import { CreatePlanLoadComponent } from './pages/plan-manager/plan-manager-workspace/create-plan-load/create-plan-load.component';
+import { SemesterLoadComponent } from './pages/plan-manager/plan-manager-workspace/create-plan-load/semester-load/semester-load.component';
+import { CourdeInfoCardComponent } from './pages/plan-manager/plan-manager-workspace/create-plan-load/courde-info-card/courde-info-card.component';
+import { FilterLoadPipe } from './core/pipes/filter-load.pipe';
 
 
 
@@ -38,11 +45,16 @@ import { DropdownComponent } from './shared/dropdown/dropdown.component';
     CreateSubjectComponent,
     UpdateSubjectComponent,
     PlansPageComponent,
-    PlanManagementPageComponent,
-    PlanLoadCardComponent,
     PlanCardComponent,
     CreatePlanComponent,
-    DropdownComponent
+    DropdownComponent,
+    PlanManagerComponent,
+    PlanManagerWorkspaceComponent,
+    PlanLoadCardComponent,
+    CreatePlanLoadComponent,
+    SemesterLoadComponent,
+    CourdeInfoCardComponent,
+    FilterLoadPipe
   ],
   imports: [
     BrowserModule,

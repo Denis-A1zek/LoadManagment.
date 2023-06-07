@@ -1,0 +1,41 @@
+<div>
+  <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+    <div class="me-md-3 pt-3 px-3 pt-md-1 px-md-1 text-center overflow-hidden">
+      <select *ngIf="specialities as specialties" class="form-select" 
+      [(ngModel)]="loadPlannerService.editablePlan$.value.specialtyId" (change)="onSelectChange()">
+        <option selected disabled>Выберите специальность...</option>
+        <option *ngFor="let specialty of specialties"
+          value={{specialty.id}}>{{specialty.code}} {{specialty.name}}</option>
+      </select>
+    </div>
+    <div class="me-md-3 pt-3 px-3 pt-md-1 px-md-1 text-center overflow-hidden">
+      <select *ngIf="subjects as subjects" class="form-select" 
+      [(ngModel)]="loadPlannerService.editablePlan$.value.subjectId " (change)="onSelectChange()"> 
+        <option selected disabled>Выберите предмет...</option>
+        <option *ngFor="let subject of subjects" 
+          value={{subject.id}}>{{subject.code}} {{subject.name}}</option>
+      </select>
+    </div>
+
+  </div>
+
+  <div>
+
+    <div *ngFor="let load of loadPlannerService.editablePlan$.value.loads">
+      <app-courde-info-card [course]="load" ></app-courde-info-card>
+    </div>
+
+    <div class="d-flex justify-content-center ">
+      <button class="btn btn-primary rounded-circle mt-4" style="width: 50px; height: 50px;"
+        (click)="modalService.open()">
+        <svg width="16" height="16" fill="currentColor" class="bi bi-plus-lg mb-1" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<app-modal *ngIf="modalService.isVisible$ | async" title="Добавление нагрузки">
+  <app-create-plan-load></app-create-plan-load>
+</app-modal>
